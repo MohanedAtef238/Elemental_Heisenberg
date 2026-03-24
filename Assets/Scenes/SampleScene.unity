@@ -129,6 +129,8 @@ GameObject:
   m_Component:
   - component: {fileID: 288940032}
   - component: {fileID: 288940031}
+  - component: {fileID: 288940033}
+  - component: {fileID: 288940034}
   m_Layer: 0
   m_Name: XR Interaction Manager
   m_TagString: Untagged
@@ -165,6 +167,33 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &288940033
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 288940030}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 17a229810eecc2349b1441f974472ead, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::FrameRateLimiter
+  targetFrameRate: 60
+--- !u!114 &288940034
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 288940030}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e4574f9ffad561c4fba955054bd22d97, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Interactions.InteractionCoordinator
+  _rules:
+  - {fileID: 11400000, guid: 3d5c33860058e034989a1324ed253a79, type: 2}
 --- !u!1 &410087039
 GameObject:
   m_ObjectHideFlags: 0
@@ -976,6 +1005,7 @@ GameObject:
   - component: {fileID: 1221506389}
   - component: {fileID: 1221506388}
   - component: {fileID: 1221506387}
+  - component: {fileID: 1221506392}
   m_Layer: 0
   m_Name: Flask_Blue
   m_TagString: Untagged
@@ -1234,6 +1264,19 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1221506385}
   m_Mesh: {fileID: 10208, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &1221506392
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1221506385}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e5acdf82db497bf46a60ee4c18aa1195, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Interactions.InteractableTag
+  _label: B
 --- !u!1 &1371676672
 GameObject:
   m_ObjectHideFlags: 0
@@ -1472,6 +1515,7 @@ GameObject:
   - component: {fileID: 1465840882}
   - component: {fileID: 1465840881}
   - component: {fileID: 1465840880}
+  - component: {fileID: 1465840885}
   m_Layer: 0
   m_Name: Flask_Green
   m_TagString: Untagged
@@ -1730,6 +1774,19 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1465840878}
   m_Mesh: {fileID: 10208, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &1465840885
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1465840878}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e5acdf82db497bf46a60ee4c18aa1195, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Interactions.InteractableTag
+  _label: A
 --- !u!1001 &1494247819
 PrefabInstance:
   m_ObjectHideFlags: 0
