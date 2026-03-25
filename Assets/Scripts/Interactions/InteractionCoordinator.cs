@@ -3,57 +3,122 @@ using UnityEngine;
 
 namespace Interactions
 {
+    [System.Serializable]
+    public class InteractionResult
+    {
+        [Header("Skybox")]
+        public bool changeSky;
+        public Material skyboxMaterial;
+
+        [Header("Screen Tint")]
+        public bool applyScreenTint;
+        public Color screenTintColor = Color.white;
+
+        [Header("Sound")]
+        public AudioClip soundEffect;
+
+        [Header("Weather Effect")]
+        [Tooltip("Optional prefab spawned at the collision midpoint")]
+        public GameObject weatherEffectPrefab;
+    }
+
+    [System.Serializable]
+    public class Interaction
+    {
+        public string label;
+        public ItemDefinition itemA;
+        public ItemDefinition itemB;
+        public InteractionResult result;
+
+        public bool Matches(ItemDefinition a, ItemDefinition b)
+        {
+            return (itemA == a && itemB == b) || (itemA == b && itemB == a);
+        }
+    }
+
     /// <summary>
-    /// Listens for physical collisions between tagged objects in the scene.
-    /// When two tagged objects collide and their labels match a rule, both objects
-    /// are deactivated and the rule's effect is applied.
+    /// Central interaction controller.
+    /// Attach to a single manager object and configure interactions in the Inspector.
+    /// Auto-discovers all ItemInstance objects in the scene at Start.
     ///
-    /// To add a new interaction type:
-    ///   1. Create a new class that extends InteractionEffect
-    ///   2. Create a new SO asset of that type (right-click > Create > Interactions > Effects)
-    ///   3. Create a new InteractionRule SO and assign labelA, labelB, and the effect asset
-    ///   4. Add the rule to this component's Rules list in the Inspector
+    /// To add a new interaction:
+    ///   1. Create ItemDefinition assets for each element
+    ///   2. Add an Interaction entry pairing the two items
+    ///   3. Configure the result (skybox, tint, sound, weather)
     /// </summary>
     public class InteractionCoordinator : MonoBehaviour
     {
-        [SerializeField] private List<InteractionRule> _rules = new();
+        [SerializeField] private List<Interaction> _interactions = new();
+        [SerializeField] private ScreenTintEffect _screenTint;
 
-        private readonly List<InteractableTag> _tags = new();
+        private readonly List<ItemInstance> _items = new();
+        private AudioSource _audioSource;
+
+        private void Awake()
+        {
+            _audioSource = GetComponent<AudioSource>();
+            if (_audioSource == null)
+                _audioSource = gameObject.AddComponent<AudioSource>();
+        }
 
         private void Start()
         {
-            foreach (var tag in FindObjectsByType<InteractableTag>(FindObjectsSortMode.None))
+            foreach (var item in FindObjectsByType<ItemInstance>(FindObjectsSortMode.None))
             {
-                _tags.Add(tag);
-                tag.OnCollidedWithTagged += HandleCollision;
+                _items.Add(item);
+                item.OnCollidedWith += HandleCollision;
             }
         }
 
         private void OnDestroy()
         {
-            foreach (var tag in _tags)
+            foreach (var item in _items)
             {
-                if (tag != null)
-                    tag.OnCollidedWithTagged -= HandleCollision;
+                if (item != null)
+                    item.OnCollidedWith -= HandleCollision;
             }
         }
 
-        private void HandleCollision(InteractableTag a, InteractableTag b)
+        private void HandleCollision(ItemInstance a, ItemInstance b)
         {
-            // Dedup: both collision partners fire the event — skip if already consumed
             if (!a.gameObject.activeSelf || !b.gameObject.activeSelf)
                 return;
 
-            foreach (var rule in _rules)
+            foreach (var interaction in _interactions)
             {
-                if (!rule.Matches(a.Label, b.Label)) continue;
+                if (!interaction.Matches(a.Definition, b.Definition))
+                    continue;
 
                 a.gameObject.SetActive(false);
                 b.gameObject.SetActive(false);
-                rule.Effect.Apply(a.gameObject, b.gameObject);
+                ApplyResult(interaction.result, a.gameObject, b.gameObject);
                 return;
             }
         }
 
+        private void ApplyResult(InteractionResult result, GameObject objA, GameObject objB)
+        {
+            if (result.changeSky && result.skyboxMaterial != null)
+            {
+                RenderSettings.skybox = new Material(result.skyboxMaterial);
+                DynamicGI.UpdateEnvironment();
+            }
+
+            if (result.applyScreenTint && _screenTint != null)
+            {
+                _screenTint.SetTint(result.screenTintColor);
+            }
+
+            if (result.soundEffect != null)
+            {
+                _audioSource.PlayOneShot(result.soundEffect);
+            }
+
+            if (result.weatherEffectPrefab != null)
+            {
+                var midpoint = (objA.transform.position + objB.transform.position) * 0.5f;
+                Instantiate(result.weatherEffectPrefab, midpoint, Quaternion.identity);
+            }
+        }
     }
 }
