@@ -1,0 +1,42 @@
+.menu-container {
+    flex-grow: 0;
+    width: 33%;
+    height: auto;
+    background-color: rgb(30, 94, 255);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+}
+
+.menu-button {
+    border-color: rgb(255, 215, 0);
+    background-color: transparent;
+    border-width: 2px;
+    border-radius: 8px;
+    margin-top: 0;
+    margin-right: 0;
+    margin-bottom: 0;
+    margin-left: 0%;
+    padding-top: 24px;
+    padding-bottom: 20px;
+    padding-right: 12px;
+    padding-left: 12px;
+    border-left-color: rgb(255, 183, 9);
+    border-right-color: rgb(255, 183, 9);
+    border-top-color: rgb(255, 183, 9);
+    border-bottom-color: rgb(255, 183, 9);
+    border-top-width: 3px;
+    border-right-width: 3px;
+    border-bottom-width: 3px;
+    border-left-width: 3px;
+    -unity-text-outline-width: 1px;
+    -unity-font-style: bold;
+}
+
+.whole-container {
+    flex-grow: 1;
+    justify-content: space-around;
+    width: 100%;
+    height: 100%;
+    align-self: auto;
+    align-items: center;
+    align-content: auto;
+}

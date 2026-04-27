@@ -1,0 +1,7 @@
+:root {
+}
+
+.select-button {
+    width: 15%;
+    aspect-ratio: 1;
+}
