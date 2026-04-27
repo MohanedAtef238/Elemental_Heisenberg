@@ -1,0 +1,58 @@
+.theme-text {
+    color: rgb(255, 255, 255);
+    font-size: 16px;
+    -unity-font-style: bold;
+}
+
+.theme-border-accent {
+    border-left-color: rgb(255, 171, 3);
+    border-right-color: rgb(255, 171, 3);
+    border-top-color: rgb(255, 171, 3);
+    border-bottom-color: rgb(255, 171, 3);
+}
+
+.theme-border-accent2 {
+    border-left-color: rgb(255, 164, 3);
+    border-right-color: rgb(255, 164, 3);
+    border-top-color: rgb(255, 164, 3);
+    border-bottom-color: rgb(255, 164, 3);
+    border-top-width: 2px;
+    border-right-width: 2px;
+    border-bottom-width: 2px;
+    border-left-width: 2px;
+}
+
+.theme-bg {
+    background-color: rgb(41, 30, 255);
+}
+
+.theme-bg-alt {
+    background-color: rgb(30, 94, 255);
+}
+
+.theme-bg-image-tint {
+    -unity-background-image-tint-color: rgba(255, 255, 255, 0.18);
+}
+
+.theme-overlay {
+    background-color: rgba(0, 0, 0, 0.19);
+}
+
+.theme-icon-transparent {
+    background-color: rgba(188, 188, 188, 0);
+}
+
+.theme-muted-bg {
+    background-color: rgba(193, 192, 192, 0.38);
+}
+
+.button-border-accent {
+    border-left-color: rgb(255, 183, 9);
+    border-right-color: rgb(255, 183, 9);
+    border-top-color: rgb(255, 183, 9);
+    border-bottom-color: rgb(255, 183, 9);
+    border-top-width: 3px;
+    border-right-width: 3px;
+    border-bottom-width: 3px;
+    border-left-width: 3px;
+}
