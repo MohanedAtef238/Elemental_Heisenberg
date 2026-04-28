@@ -104,7 +104,7 @@ namespace Interactions
             tm.anchor = TextAnchor.LowerCenter;
             tm.alignment = TextAlignment.Center;
             tm.characterSize = 0.02f;
-            tm.fontSize = 128;
+            tm.fontSize = 64;
             tm.color = new Color(1f, 1f, 1f, 0f);
 
             tooltip.SetActive(false);
