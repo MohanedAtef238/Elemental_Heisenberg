@@ -97,29 +97,5 @@ InitTestScene*.unity*
 
 # Auto-generated scenes by play mode tests
 /[Aa]ssets/[Ii]nit[Tt]est[Ss]cene*.unity*
-
-# Unity Assets from the store 
-Assets/Vefects/
-Assets/Vefects.meta
-Assets/UnityTechnologies/
-Assets/UnityTechnologies.meta
-Assets/Realistic Hail Set/
-Assets/Realistic Hail Set.meta
-Assets/RainMaker/
-Assets/RainMaker.meta
-Assets/Matthew Guz/
-Assets/Matthew Guz.meta
-Assets/Low Poly Furniture/
-Assets/Low Poly Furniture.meta
-Assets/JMO Assets/
-Assets/JMO Assets.meta
-Assets/Fantasy Skybox FREE/
-Assets/Fantasy Skybox FREE.meta
-Assets/Hovl Studio
-Assets/Hovl Studio.meta
-Assets/AlchemyLabProps
-Assets/AlchemyLabProps.meta
-Assets/RK Studios
-Assets/RK Studios.meta
-Assets/Mini Alchemy
-Assets/Mini Alchemy.meta
+/[Aa]ssets/[Ss]creenshots/
+# Unity Assets from the store pushed to ensure everyone has the same files
