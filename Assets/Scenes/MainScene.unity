@@ -186,6 +186,19 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 485142, guid: 662dc20108624032b4ce7f54157a9ac2, type: 3}
   m_PrefabInstance: {fileID: 4679683}
   m_PrefabAsset: {fileID: 0}
+--- !u!134 &108153591
+PhysicsMaterial:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: 
+  serializedVersion: 2
+  m_DynamicFriction: 0.6
+  m_StaticFriction: 0.6
+  m_Bounciness: 0
+  m_FrictionCombine: 0
+  m_BounceCombine: 0
 --- !u!1 &204531897
 GameObject:
   m_ObjectHideFlags: 0
@@ -410,6 +423,7 @@ GameObject:
   - component: {fileID: 288940031}
   - component: {fileID: 288940033}
   - component: {fileID: 288940034}
+  - component: {fileID: 288940035}
   m_Layer: 0
   m_Name: XR Interaction Manager
   m_TagString: Untagged
@@ -483,11 +497,38 @@ MonoBehaviour:
       soundEffect: {fileID: 0}
       weatherEffectPrefab: {fileID: 0}
   _screenTint: {fileID: 1200266173}
+--- !u!114 &288940035
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 288940030}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 03a5df2202a8b96488c744be3bd0c33e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Unity.XR.Interaction.Toolkit::UnityEngine.XR.Interaction.Toolkit.LocomotionSystem
+  m_Timeout: 10
+  m_XROrigin: {fileID: 1224201994}
 --- !u!1 &347061105 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 130918, guid: 517e2520ef6b4a098fa2b4d0d98d7a39, type: 3}
   m_PrefabInstance: {fileID: 706290694}
   m_PrefabAsset: {fileID: 0}
+--- !u!134 &398830985
+PhysicsMaterial:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: ' (Instance)'
+  serializedVersion: 2
+  m_DynamicFriction: 0.6
+  m_StaticFriction: 0.6
+  m_Bounciness: 0
+  m_FrictionCombine: 0
+  m_BounceCombine: 0
 --- !u!1 &410087039
 GameObject:
   m_ObjectHideFlags: 0
@@ -907,7 +948,7 @@ BoxCollider:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 709752451}
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 108153591}
   m_IncludeLayers:
     serializedVersion: 2
     m_Bits: 0
@@ -921,6 +962,19 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 10, y: 2.220446e-16, z: 10}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!134 &748269835
+PhysicsMaterial:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: 
+  serializedVersion: 2
+  m_DynamicFriction: 0.6
+  m_StaticFriction: 0.6
+  m_Bounciness: 0
+  m_FrictionCombine: 0
+  m_BounceCombine: 0
 --- !u!1001 &769062780
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1391,6 +1445,17 @@ MonoBehaviour:
   m_LocomotionProvider: {fileID: 1609084028}
   m_MinHeight: 0
   m_MaxHeight: Infinity
+--- !u!114 &1224201994 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1178791450436251564, guid: f6336ac4ac8b4d34bc5072418cdc62a0, type: 3}
+  m_PrefabInstance: {fileID: 1494247819}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1224201982}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e0cb9aa70a22847b5925ee5f067c10a9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1260560051 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 9195075347593908492, guid: 4bfd689486c84c84c988de692594fda1, type: 3}
@@ -1742,6 +1807,18 @@ PrefabInstance:
       propertyPath: m_InteractionManager
       value: 
       objectReference: {fileID: 288940031}
+    - target: {fileID: 3074471628601745017, guid: f6336ac4ac8b4d34bc5072418cdc62a0, type: 3}
+      propertyPath: m_CastDistance
+      value: 1.25
+      objectReference: {fileID: 0}
+    - target: {fileID: 4053579577978487484, guid: f6336ac4ac8b4d34bc5072418cdc62a0, type: 3}
+      propertyPath: m_CastRadius
+      value: 0.3
+      objectReference: {fileID: 0}
+    - target: {fileID: 5456733348963664102, guid: f6336ac4ac8b4d34bc5072418cdc62a0, type: 3}
+      propertyPath: m_CastDistance
+      value: 1.25
+      objectReference: {fileID: 0}
     - target: {fileID: 6232745470614056090, guid: f6336ac4ac8b4d34bc5072418cdc62a0, type: 3}
       propertyPath: m_Radius
       value: 0.2
@@ -1753,7 +1830,19 @@ PrefabInstance:
     - target: {fileID: 6232745470614056090, guid: f6336ac4ac8b4d34bc5072418cdc62a0, type: 3}
       propertyPath: m_Material
       value: 
-      objectReference: {fileID: 1527420743}
+      objectReference: {fileID: 398830985}
+    - target: {fileID: 6232745470614056090, guid: f6336ac4ac8b4d34bc5072418cdc62a0, type: 3}
+      propertyPath: m_SkinWidth
+      value: 0.02
+      objectReference: {fileID: 0}
+    - target: {fileID: 6232745470614056090, guid: f6336ac4ac8b4d34bc5072418cdc62a0, type: 3}
+      propertyPath: m_StepOffset
+      value: 0.3
+      objectReference: {fileID: 0}
+    - target: {fileID: 6436123941575367715, guid: f6336ac4ac8b4d34bc5072418cdc62a0, type: 3}
+      propertyPath: m_CastRadius
+      value: 0.3
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -1855,19 +1944,6 @@ Transform:
   - {fileID: 1893892155}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!134 &1527420743
-PhysicsMaterial:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_Name: 
-  serializedVersion: 2
-  m_DynamicFriction: 0.6
-  m_StaticFriction: 0.6
-  m_Bounciness: 0
-  m_FrictionCombine: 0
-  m_BounceCombine: 0
 --- !u!114 &1609084028 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 153982007679157697, guid: f6336ac4ac8b4d34bc5072418cdc62a0, type: 3}
@@ -2166,6 +2242,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6501648, guid: 7898d54b47c340b59a0491e6a61aded1, type: 3}
+      propertyPath: m_Material
+      value: 
+      objectReference: {fileID: 748269835}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -2561,6 +2641,62 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 634712377491002031, guid: 4bfd689486c84c84c988de692594fda1, type: 3}
+      propertyPath: m_Mass
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 634712377491002031, guid: 4bfd689486c84c84c988de692594fda1, type: 3}
+      propertyPath: m_Constraints
+      value: 112
+      objectReference: {fileID: 0}
+    - target: {fileID: 634712377491002031, guid: 4bfd689486c84c84c988de692594fda1, type: 3}
+      propertyPath: m_Interpolate
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 634712377491002031, guid: 4bfd689486c84c84c988de692594fda1, type: 3}
+      propertyPath: m_LinearDamping
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 634712377491002031, guid: 4bfd689486c84c84c988de692594fda1, type: 3}
+      propertyPath: m_AngularDamping
+      value: 0.05
+      objectReference: {fileID: 0}
+    - target: {fileID: 634712377491002031, guid: 4bfd689486c84c84c988de692594fda1, type: 3}
+      propertyPath: m_CollisionDetection
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 779062622115185359, guid: 4bfd689486c84c84c988de692594fda1, type: 3}
+      propertyPath: m_MovementType
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 779062622115185359, guid: 4bfd689486c84c84c988de692594fda1, type: 3}
+      propertyPath: m_ThrowOnDetach
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 779062622115185359, guid: 4bfd689486c84c84c988de692594fda1, type: 3}
+      propertyPath: m_TrackRotation
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 779062622115185359, guid: 4bfd689486c84c84c988de692594fda1, type: 3}
+      propertyPath: m_VelocityScale
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 779062622115185359, guid: 4bfd689486c84c84c988de692594fda1, type: 3}
+      propertyPath: m_AttachEaseInTime
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 779062622115185359, guid: 4bfd689486c84c84c988de692594fda1, type: 3}
+      propertyPath: m_AngularVelocityScale
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 779062622115185359, guid: 4bfd689486c84c84c988de692594fda1, type: 3}
+      propertyPath: m_SmoothPositionAmount
+      value: 25
+      objectReference: {fileID: 0}
+    - target: {fileID: 779062622115185359, guid: 4bfd689486c84c84c988de692594fda1, type: 3}
+      propertyPath: m_SmoothRotationAmount
+      value: 25
+      objectReference: {fileID: 0}
     - target: {fileID: 4261460044957331266, guid: 4bfd689486c84c84c988de692594fda1, type: 3}
       propertyPath: m_LocalPosition.x
       value: -0.07
@@ -2600,6 +2736,22 @@ PrefabInstance:
     - target: {fileID: 4261460044957331266, guid: 4bfd689486c84c84c988de692594fda1, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4943493001589702367, guid: 4bfd689486c84c84c988de692594fda1, type: 3}
+      propertyPath: m_Center.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4943493001589702367, guid: 4bfd689486c84c84c988de692594fda1, type: 3}
+      propertyPath: m_Center.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4943493001589702367, guid: 4bfd689486c84c84c988de692594fda1, type: 3}
+      propertyPath: m_ProvidesContacts
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8604498753685122894, guid: 4bfd689486c84c84c988de692594fda1, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.046
       objectReference: {fileID: 0}
     - target: {fileID: 9195075347593908492, guid: 4bfd689486c84c84c988de692594fda1, type: 3}
       propertyPath: m_Name
