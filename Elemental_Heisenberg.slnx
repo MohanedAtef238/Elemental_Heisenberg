@@ -1,5 +1,6 @@
 ﻿<Solution>
   <Project Path="Unity.XR.Interaction.Toolkit.Samples.InteractionSimulator.csproj" />
+  <Project Path="Assembly-CSharp.csproj" />
   <Project Path="CFXRRuntime.csproj" />
   <Project Path="_UI.Runtime.csproj" />
   <Project Path="Assembly-CSharp-Editor.csproj" />
@@ -7,7 +8,6 @@
   <Project Path="CFXREditor.csproj" />
   <Project Path="Unity.XR.Hands.Samples.VisualizerSample.csproj" />
   <Project Path="Unity.XR.Interaction.Toolkit.Samples.StarterAssets.csproj" />
-  <Project Path="Assembly-CSharp.csproj" />
   <Project Path="Unity.XR.Interaction.Toolkit.Samples.Hands.csproj" />
   <Project Path="KinoBloom.Runtime.csproj" />
   <Project Path="CFXR.WelcomeScreen.csproj" />
