@@ -168247,6 +168247,11 @@ ParticleSystem:
         m_PostInfinity: 2
         m_RotationOrder: 4
     vectorLabel1_3: W
+--- !u!1 &942687395 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1345105557649435795, guid: 2d8ed90570f5b254f9d667ebe553f6ba, type: 3}
+  m_PrefabInstance: {fileID: 880635008}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &947349094 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 100000, guid: 2cb0dc68466949f6bb5351158ceae9fb, type: 3}
@@ -330785,13 +330790,20 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Interactions.AlchemyZone
   _vialsInZone: []
-  _prepSkybox: {fileID: 2100000, guid: 44d0573bf6d91e447b62f3aff840f2ae, type: 2}
-  _resultVialPrefab: {fileID: 2410793874170262412, guid: 027e111379ab58342818ea7d0953ee8f, type: 3}
-  _reactionPrefab: {fileID: 358637981425055526, guid: 8eb503696b886e04faff8fc0f480d473, type: 3}
+  _reactionRecipes:
+  - label: 
+    reactingVials:
+    - {fileID: 11400000, guid: 10aae65f508926b449e0a72be4bd9023, type: 2}
+    - {fileID: 11400000, guid: 5703551fc9d693244ad46f8e59606aae, type: 2}
+    resultVialPrefab: {fileID: 942687395}
+    reactionPrefab: {fileID: 1733941154}
+    prepSkybox: {fileID: 2100000, guid: 39d27e80110a983468075fd1868610d7, type: 2}
+    audioFeedback: {fileID: 8300000, guid: d0f323ea00236c1438d5da5d9a6414e0, type: 3}
   _textPrefabs:
   - {fileID: 5339739117810204693, guid: 26e1cb216e3635e4a820f58a1118d6b9, type: 3}
   - {fileID: 119183615461286708, guid: 141e1779869c79845bd243610f187f47, type: 3}
   - {fileID: 2883797502249945402, guid: 1e54877675f6e4a46ad7ca7c4d7a5bf6, type: 3}
+  _reactionCooldown: 1
 --- !u!1 &1766618390
 GameObject:
   m_ObjectHideFlags: 0

@@ -67,7 +67,7 @@
         "*.sln": "*.csproj",
         "*.slnx": "*.csproj"
     },
-    "dotnet.defaultSolution": "My project.slnx",
+    "dotnet.defaultSolution": "Elemental_Heisenberg.slnx",
     "chat.tools.terminal.autoApprove": {
         "ForEach-Object": true
     }
