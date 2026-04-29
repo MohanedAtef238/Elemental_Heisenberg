@@ -20,15 +20,6 @@ public class VialVFXContainer : MonoBehaviour
         }
     }
 
-    private void Start()
-    {
-        // Try to find the XR camera
-        if (Camera.main != null)
-        {
-            playerTransform = Camera.main.transform;
-        }
-    }
-
     public void InjectEffect(GameObject vfxPrefab)
     {
         if (vfxPrefab == null || effectAnchor == null) return;
@@ -49,41 +40,8 @@ public class VialVFXContainer : MonoBehaviour
         
         foreach (var ps in allSystems)
         {
-            if (ps.CompareTag(effectTag))
-            {
-                var main = ps.main;
-                main.maxParticles = maxParticles;
-                main.simulationSpeed = simulationSpeed;
-                targetSystems.Add(ps);
-            }
-        }
-    }
-
-    private void Update()
-    {
-        if (targetSystems.Count == 0) return;
-
-        // If player transform is lost, try to re-acquire (useful for VR scene loading)
-        if (playerTransform == null && Camera.main != null)
-        {
-            playerTransform = Camera.main.transform;
-        }
-
-        if (playerTransform == null) return;
-
-        float dist = Vector3.Distance(transform.position, playerTransform.position);
-        bool shouldBeActive = dist <= activationDistance;
-
-        foreach (var ps in targetSystems)
-        {
-            if (shouldBeActive && !ps.isPlaying)
-            {
-                ps.Play();
-            }
-            else if (!shouldBeActive && ps.isPlaying)
-            {
-                ps.Pause();
-            }
+            // Note: We no longer gate by tag here to allow the Pad to find all systems
+            targetSystems.Add(ps);
         }
     }
 }

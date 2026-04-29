@@ -15,9 +15,9 @@ GameObject:
   - component: {fileID: 801028453173019094}
   - component: {fileID: 2607423752859926735}
   - component: {fileID: 2617289636747754986}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Base_WeatherVial
-  m_TagString: Untagged
+  m_TagString: Vial
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -63,7 +63,7 @@ Rigidbody:
   m_ImplicitTensor: 1
   m_UseGravity: 1
   m_IsKinematic: 0
-  m_Interpolate: 2
+  m_Interpolate: 1
   m_Constraints: 112
   m_CollisionDetection: 2
 --- !u!135 &266007949118005263
@@ -85,7 +85,7 @@ SphereCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Radius: 0.1
+  m_Radius: 0.15
   m_Center: {x: 0, y: 0.05, z: 0}
 --- !u!114 &3250441868932122740
 MonoBehaviour:
@@ -258,7 +258,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 554d6fd0da15b13499ad9347a122c9fc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Interactions.TooltipOnHover
-  tooltipPrefab: {fileID: 8817397548964626789, guid: d8f39a6e8b3fa5949a0054e16642e04b, type: 3}
+  tooltipPrefab: {fileID: 100000, guid: d8f39a6e8b3fa5949a0054e16642e04b, type: 3}
   offset: {x: 0, y: 0.2, z: 0}
   fadeDuration: 0.15
   tooltipText: Weather Vial
@@ -271,7 +271,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1881702407643904618}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Visual_Mesh
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -303,7 +303,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3320474205337817584}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: VFX_Anchor
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -336,6 +336,14 @@ PrefabInstance:
     - target: {fileID: 1257193002279952, guid: a628f6f95bf927d449632f563706db95, type: 3}
       propertyPath: m_Name
       value: Flask_Model
+      objectReference: {fileID: 0}
+    - target: {fileID: 1257193002279952, guid: a628f6f95bf927d449632f563706db95, type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 1995273381122676, guid: a628f6f95bf927d449632f563706db95, type: 3}
+      propertyPath: m_Layer
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 4791130065246042, guid: a628f6f95bf927d449632f563706db95, type: 3}
       propertyPath: m_LocalPosition.x

@@ -1,0 +1,18 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 85f9f595571d5cd4b8a134e3ba863a73, type: 3}
+  m_Name: Item_MeteorStrike
+  m_EditorClassIdentifier: Assembly-CSharp::Interactions.ItemDefinition
+  _itemId: meteor_strike
+  _displayName: Meteor Strike
+  _effectPrefab: {fileID: 7957833072274404953, guid: 3355f6bfa6db8b24281b827de929694c, type: 3}
+  _trailPrefab: {fileID: 0}

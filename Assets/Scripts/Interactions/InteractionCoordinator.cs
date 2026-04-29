@@ -20,6 +20,11 @@ namespace Interactions
         [Header("Weather Effect")]
         [Tooltip("Optional prefab spawned at the collision midpoint")]
         public GameObject weatherEffectPrefab;
+
+        [Header("Output Vial")]
+        [Tooltip("If set, spawns a new vial with this definition")]
+        public ItemDefinition outputVialDefinition;
+        public GameObject baseVialPrefab;
     }
 
     [System.Serializable]
@@ -66,7 +71,7 @@ namespace Interactions
             foreach (var item in FindObjectsByType<ItemInstance>(FindObjectsSortMode.None))
             {
                 _items.Add(item);
-                item.OnCollidedWith += HandleCollision;
+                // item.OnCollidedWith += HandleCollision;
             }
         }
 
@@ -74,8 +79,8 @@ namespace Interactions
         {
             foreach (var item in _items)
             {
-                if (item != null)
-                    item.OnCollidedWith -= HandleCollision;
+                // if (item != null)
+                //     item.OnCollidedWith -= HandleCollision;
             }
         }
 
@@ -118,6 +123,17 @@ namespace Interactions
             {
                 var midpoint = (objA.transform.position + objB.transform.position) * 0.5f;
                 Instantiate(result.weatherEffectPrefab, midpoint, Quaternion.identity);
+            }
+
+            if (result.outputVialDefinition != null && result.baseVialPrefab != null)
+            {
+                var midpoint = (objA.transform.position + objB.transform.position) * 0.5f;
+                GameObject newVial = Instantiate(result.baseVialPrefab, midpoint + Vector3.up * 0.2f, Quaternion.identity);
+                var instance = newVial.GetComponent<ItemInstance>();
+                if (instance != null)
+                {
+                    instance.SetDefinition(result.outputVialDefinition);
+                }
             }
         }
     }
