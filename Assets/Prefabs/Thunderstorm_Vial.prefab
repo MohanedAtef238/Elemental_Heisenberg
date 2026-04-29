@@ -14854,6 +14854,7 @@ GameObject:
   - component: {fileID: 779062622115185359}
   - component: {fileID: 5978701372232095102}
   - component: {fileID: 4789885779955697287}
+  - component: {fileID: 1639876013737256535}
   m_Layer: 0
   m_Name: Thunderstorm_Vial
   m_TagString: Untagged
@@ -14924,7 +14925,7 @@ SphereCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Radius: 0.05
+  m_Radius: 0.1
   m_Center: {x: 0, y: 0.05, z: 0}
 --- !u!114 &779062622115185359
 MonoBehaviour:
@@ -15085,3 +15086,19 @@ MonoBehaviour:
   simulationSpeed: 0.5
   maxParticles: 8
   effectTag: vial_effects
+--- !u!114 &1639876013737256535
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9195075347593908492}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 554d6fd0da15b13499ad9347a122c9fc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Interactions.TooltipOnHover
+  tooltipPrefab: {fileID: 0}
+  offset: {x: 0, y: 0.2, z: 0}
+  fadeDuration: 0.15
+  tooltipText: Thunderstorm Vial

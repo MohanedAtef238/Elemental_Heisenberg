@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Reflection;
 using UnityEngine;
 using UnityEngine.UIElements;
+using UnityEngine.XR.Interaction.Toolkit.Interactors.Casters;
 
 [RequireComponent(typeof(UIDocument))]
 public class WorldSpaceMenuGate : MonoBehaviour
@@ -11,6 +12,13 @@ public class WorldSpaceMenuGate : MonoBehaviour
     [SerializeField] private string exitButtonName = "ExitButton";
     [SerializeField] private bool hideMenuAfterStart = true;
     [SerializeField] private Transform lockRoot;
+
+    [Header("Interaction Range")]
+    [Tooltip("The range of the interaction beam during the menu phase.")]
+    [SerializeField] private float menuInteractionRange = 100f;
+    [Tooltip("The range of the interaction beam during gameplay.")]
+    [SerializeField] private float gameplayInteractionRange = 0.8f;
+    [SerializeField] private List<CurveInteractionCaster> interactors = new();
 
     private UIDocument _document;
     private VisualElement _root;
@@ -26,12 +34,30 @@ public class WorldSpaceMenuGate : MonoBehaviour
 
     private void Start()
     {
+        if (_document == null) return;
+        
+        // Wait for UI to be ready
+        if (_document.rootVisualElement == null)
+        {
+            Invoke(nameof(InitializeMenu), 0.1f);
+            return;
+        }
+
+        InitializeMenu();
+    }
+
+    private void InitializeMenu()
+    {
         _root = _document.rootVisualElement;
+        if (_root == null) return;
 
         CacheButtons();
         WireButtons();
         CacheLockedBehaviours();
         ApplyMenuLock(true);
+        SetInteractionRange(menuInteractionRange);
+        
+        Debug.Log($"[MenuGate] Initialized. Menu range set to {menuInteractionRange}");
 
         _startButton?.Focus();
     }
@@ -134,8 +160,6 @@ public class WorldSpaceMenuGate : MonoBehaviour
             return true;
         }
 
-        // Starter Assets controller helpers hold these action references and can still drive
-        // movement / teleport state even if only provider components are disabled.
         if (HasAnyField(type,
                 "m_Move",
                 "m_Turn",
@@ -195,6 +219,7 @@ public class WorldSpaceMenuGate : MonoBehaviour
 
         _started = true;
         ApplyMenuLock(false);
+        SetInteractionRange(gameplayInteractionRange);
 
         if (hideMenuAfterStart)
         {
@@ -206,9 +231,35 @@ public class WorldSpaceMenuGate : MonoBehaviour
     {
 #if UNITY_EDITOR
         UnityEditor.EditorApplication.isPlaying = false;
-#else
-        Application.Quit();
 #endif
+        Application.Quit();
+    }
+
+    /// <summary>
+    /// Adjusts ONLY the ray cast distance on CurveInteractionCasters.
+    /// Does NOT modify interactionLayers — that would break grabbing.
+    /// World-space UI input routing is handled by PanelInputConfiguration in the scene.
+    /// </summary>
+    private void SetInteractionRange(float range)
+    {
+        var allInteractors = FindObjectsByType<UnityEngine.XR.Interaction.Toolkit.Interactors.XRBaseInteractor>(FindObjectsSortMode.None);
+        
+        interactors ??= new List<CurveInteractionCaster>();
+        interactors.Clear();
+
+        foreach (var interactor in allInteractors)
+        {
+            if (interactor == null) continue;
+
+            // Only adjust cast distance — do NOT touch interactionLayers
+            var caster = interactor.GetComponentInChildren<CurveInteractionCaster>();
+            if (caster != null)
+            {
+                caster.castDistance = range;
+                interactors.Add(caster);
+                Debug.Log($"[MenuGate] Set castDistance={range} on {interactor.gameObject.name}");
+            }
+        }
     }
 
     private readonly struct BehaviourState

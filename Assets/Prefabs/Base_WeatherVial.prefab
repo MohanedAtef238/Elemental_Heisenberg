@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 3250441868932122740}
   - component: {fileID: 801028453173019094}
   - component: {fileID: 2607423752859926735}
+  - component: {fileID: 2617289636747754986}
   m_Layer: 0
   m_Name: Base_WeatherVial
   m_TagString: Untagged
@@ -84,7 +85,7 @@ SphereCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Radius: 0.05
+  m_Radius: 0.1
   m_Center: {x: 0, y: 0.05, z: 0}
 --- !u!114 &3250441868932122740
 MonoBehaviour:
@@ -241,6 +242,26 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::VialVFXContainer
   effectAnchor: {fileID: 3320474205337817584}
+  activationDistance: 2.5
+  simulationSpeed: 0.5
+  maxParticles: 8
+  effectTag: vial_effects
+--- !u!114 &2617289636747754986
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1345105557649435795}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 554d6fd0da15b13499ad9347a122c9fc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Interactions.TooltipOnHover
+  tooltipPrefab: {fileID: 8817397548964626789, guid: d8f39a6e8b3fa5949a0054e16642e04b, type: 3}
+  offset: {x: 0, y: 0.2, z: 0}
+  fadeDuration: 0.15
+  tooltipText: Weather Vial
 --- !u!1 &5602638646694752053
 GameObject:
   m_ObjectHideFlags: 0
