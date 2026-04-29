@@ -55,37 +55,16 @@ public class WeaponToggleEquip : MonoBehaviour
 
     private void Toggle()
     {
-        if (!_isEquipped)
-            EquipWeapon();
-        else
-            UnequipWeapon();
+        // Method disabled to prevent interference with alchemy system
     }
 
-    private void EquipWeapon()
+    private void EquipWeapon_DISABLED()
     {
-        if (weaponPrefab == null || attachPoint == null)
-        {
-            Debug.LogWarning("[WeaponToggleEquip] WeaponPrefab or AttachPoint is not assigned.", this);
-            return;
-        }
-
-        _spawnedWeapon = Instantiate(weaponPrefab, attachPoint);
-        _spawnedWeapon.transform.localPosition = Vector3.zero;
-        _spawnedWeapon.transform.localRotation = Quaternion.identity;
-        _isEquipped = true;
-
-        Debug.Log("[WeaponToggleEquip] Weapon equipped.");
+        // Method disabled to prevent interference with alchemy system
     }
 
     private void UnequipWeapon()
     {
-        if (_spawnedWeapon != null)
-        {
-            Destroy(_spawnedWeapon);
-            _spawnedWeapon = null;
-        }
-
-        _isEquipped = false;
-        Debug.Log("[WeaponToggleEquip] Weapon unequipped.");
+        // Method disabled to prevent interference with alchemy system
     }
 }

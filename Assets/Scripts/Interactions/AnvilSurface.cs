@@ -22,7 +22,24 @@ namespace Interactions
         private void OnEnable()
         {
             if (debugTriggerAction != null)
+            {
                 debugTriggerAction.action.performed += OnDebugTrigger;
+            }
+            else
+            {
+                // Robust fallback: Try to find the Activate action on the left hand directly
+                // Correct path from XRI Default Input Actions: "XRI Left Interaction/Activate"
+                var activateAction = InputSystem.actions.FindAction("XRI Left Interaction/Activate");
+                if (activateAction != null)
+                {
+                    activateAction.performed += OnDebugTrigger;
+                    Debug.Log("AnvilSurface: Successfully hooked 'XRI Left Interaction/Activate' fallback.");
+                }
+                else
+                {
+                    Debug.LogWarning("AnvilSurface: debugTriggerAction is null AND 'XRI Left Interaction/Activate' not found. VR Trigger won't work.");
+                }
+            }
         }
 
         private void OnDisable()
