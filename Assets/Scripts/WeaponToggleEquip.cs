@@ -30,14 +30,18 @@ public class WeaponToggleEquip : MonoBehaviour
 
     private void OnEnable()
     {
+        /*
         if (triggerAction != null)
             triggerAction.action.performed += OnTriggerPerformed;
+        */
     }
 
     private void OnDisable()
     {
+        /*
         if (triggerAction != null)
             triggerAction.action.performed -= OnTriggerPerformed;
+        */
     }
 
     // -------------------------------------------------------

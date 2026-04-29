@@ -246,6 +246,8 @@ MonoBehaviour:
   simulationSpeed: 0.5
   maxParticles: 8
   effectTag: vial_effects
+  vfxScale: 0.02
+  intensityMultiplier: 2
 --- !u!114 &7142858261536454878
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -258,7 +260,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 554d6fd0da15b13499ad9347a122c9fc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Interactions.TooltipOnHover
-  tooltipPrefab: {fileID: 0}
+  tooltipPrefab: {fileID: 100000, guid: d8f39a6e8b3fa5949a0054e16642e04b, type: 3}
   offset: {x: 0, y: 0.2, z: 0}
   fadeDuration: 0.15
   tooltipText: 

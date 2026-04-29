@@ -98,6 +98,7 @@ namespace Interactions
 
         private void HideTooltip()
         {
+            if (!this.gameObject.activeInHierarchy) return;
             if (_tooltipInstance == null) return;
             if (_fadeCoroutine != null) StopCoroutine(_fadeCoroutine);
             _fadeCoroutine = StartCoroutine(FadeTo(0f, deactivateOnEnd: true));

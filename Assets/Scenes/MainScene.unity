@@ -39701,14 +39701,14 @@ MonoBehaviour:
     itemA: {fileID: 11400000, guid: 10aae65f508926b449e0a72be4bd9023, type: 2}
     itemB: {fileID: 11400000, guid: 35b8056a4d58313439cb4033df1c8f9e, type: 2}
     result:
-      changeSky: 0
-      skyboxMaterial: {fileID: 0}
+      changeSky: 1
+      skyboxMaterial: {fileID: 2100000, guid: aed657681c6812845bb7736c343b5e9b, type: 2}
       applyScreenTint: 0
       screenTintColor: {r: 1, g: 1, b: 1, a: 1}
       soundEffect: {fileID: 0}
       weatherEffectPrefab: {fileID: 1344314377593938, guid: 9e03786a9517b604d8e930182607a128, type: 3}
       outputVialDefinition: {fileID: 11400000, guid: 01fc533bb306f5642903baf47d4c64d8, type: 2}
-      baseVialPrefab: {fileID: 1345105557649435795, guid: 2d8ed90570f5b254f9d667ebe553f6ba, type: 3}
+      baseVialPrefab: {fileID: 2410793874170262412, guid: 027e111379ab58342818ea7d0953ee8f, type: 3}
   - label: Conductive Plasma
     itemA: {fileID: 11400000, guid: 711ec5c85ed3e394d933755c2a7deb03, type: 2}
     itemB: {fileID: 11400000, guid: 35b8056a4d58313439cb4033df1c8f9e, type: 2}
@@ -49664,6 +49664,19 @@ ParticleSystem:
         m_PostInfinity: 2
         m_RotationOrder: 4
     vectorLabel1_3: W
+--- !u!134 &314121984
+PhysicsMaterial:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: 
+  serializedVersion: 2
+  m_DynamicFriction: 0.6
+  m_StaticFriction: 0.6
+  m_Bounciness: 0
+  m_FrictionCombine: 0
+  m_BounceCombine: 0
 --- !u!4 &327336134 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 3320474205337817584, guid: 2d8ed90570f5b254f9d667ebe553f6ba, type: 3}
@@ -74422,6 +74435,19 @@ ParticleSystem:
         m_PostInfinity: 2
         m_RotationOrder: 4
     vectorLabel1_3: W
+--- !u!134 &463483116
+PhysicsMaterial:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: 
+  serializedVersion: 2
+  m_DynamicFriction: 0.6
+  m_StaticFriction: 0.6
+  m_Bounciness: 0
+  m_FrictionCombine: 0
+  m_BounceCombine: 0
 --- !u!1 &468600191
 GameObject:
   m_ObjectHideFlags: 0
@@ -93987,6 +94013,19 @@ ParticleSystem:
         m_PostInfinity: 2
         m_RotationOrder: 4
     vectorLabel1_3: W
+--- !u!134 &547380899
+PhysicsMaterial:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: ' (Instance) (Instance) (Instance) (Instance)'
+  serializedVersion: 2
+  m_DynamicFriction: 0.6
+  m_StaticFriction: 0.6
+  m_Bounciness: 0
+  m_FrictionCombine: 0
+  m_BounceCombine: 0
 --- !u!1 &552000178
 GameObject:
   m_ObjectHideFlags: 0
@@ -133219,19 +133258,6 @@ ParticleSystem:
         m_PostInfinity: 2
         m_RotationOrder: 4
     vectorLabel1_3: W
---- !u!134 &749846876
-PhysicsMaterial:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_Name: ' (Instance) (Instance)'
-  serializedVersion: 2
-  m_DynamicFriction: 0.6
-  m_StaticFriction: 0.6
-  m_Bounciness: 0
-  m_FrictionCombine: 0
-  m_BounceCombine: 0
 --- !u!1 &761536709
 GameObject:
   m_ObjectHideFlags: 0
@@ -187894,6 +187920,10 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 8
       objectReference: {fileID: 0}
+    - target: {fileID: 2036260645340553652, guid: 2d8ed90570f5b254f9d667ebe553f6ba, type: 3}
+      propertyPath: m_Material
+      value: 
+      objectReference: {fileID: 314121984}
     - target: {fileID: 2617289636747754986, guid: 2d8ed90570f5b254f9d667ebe553f6ba, type: 3}
       propertyPath: tooltipText
       value: Petrifying Mud
@@ -237126,19 +237156,6 @@ ParticleSystem:
         m_PostInfinity: 2
         m_RotationOrder: 4
     vectorLabel1_3: W
---- !u!134 &1416314634
-PhysicsMaterial:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_Name: ' (Instance)'
-  serializedVersion: 2
-  m_DynamicFriction: 0.6
-  m_StaticFriction: 0.6
-  m_Bounciness: 0
-  m_FrictionCombine: 0
-  m_BounceCombine: 0
 --- !u!1001 &1418486217
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -330741,7 +330758,7 @@ BoxCollider:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 947349094}
-  m_Material: {fileID: 1416314634}
+  m_Material: {fileID: 2085593533}
   m_IncludeLayers:
     serializedVersion: 2
     m_Bits: 0
@@ -345212,6 +345229,10 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 8
       objectReference: {fileID: 0}
+    - target: {fileID: 2036260645340553652, guid: 2d8ed90570f5b254f9d667ebe553f6ba, type: 3}
+      propertyPath: m_Material
+      value: 
+      objectReference: {fileID: 463483116}
     - target: {fileID: 2617289636747754986, guid: 2d8ed90570f5b254f9d667ebe553f6ba, type: 3}
       propertyPath: tooltipText
       value: Fire Extract
@@ -350513,7 +350534,7 @@ PrefabInstance:
     - target: {fileID: 6501648, guid: 7898d54b47c340b59a0491e6a61aded1, type: 3}
       propertyPath: m_Material
       value: 
-      objectReference: {fileID: 749846876}
+      objectReference: {fileID: 547380899}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects:
@@ -350533,6 +350554,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 142046, guid: 7898d54b47c340b59a0491e6a61aded1, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1893892159}
+    - targetCorrespondingSourceObject: {fileID: 142046, guid: 7898d54b47c340b59a0491e6a61aded1, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1893892163}
   m_SourcePrefab: {fileID: 100100000, guid: 7898d54b47c340b59a0491e6a61aded1, type: 3}
 --- !u!4 &1893892155 stripped
 Transform:
@@ -350552,7 +350576,29 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Interactions.AnvilSurface
   _alchemyZone: {fileID: 1755678362}
+  debugTriggerAction: {fileID: 0}
   requiredImpactForce: 3
+--- !u!65 &1893892163
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 833465974}
+  m_Material: {fileID: 2059083755}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 1, y: 0.05, z: 1.6}
+  m_Center: {x: 0, y: 0.82, z: 0}
 --- !u!1 &1897132037
 GameObject:
   m_ObjectHideFlags: 0
@@ -404505,6 +404551,19 @@ ParticleSystem:
         m_PostInfinity: 2
         m_RotationOrder: 4
     vectorLabel1_3: W
+--- !u!134 &2059083755
+PhysicsMaterial:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: ' (Instance)'
+  serializedVersion: 2
+  m_DynamicFriction: 0.6
+  m_StaticFriction: 0.6
+  m_Bounciness: 0
+  m_FrictionCombine: 0
+  m_BounceCombine: 0
 --- !u!1 &2070213371
 GameObject:
   m_ObjectHideFlags: 0
@@ -414265,6 +414324,19 @@ ParticleSystem:
         m_PostInfinity: 2
         m_RotationOrder: 4
     vectorLabel1_3: W
+--- !u!134 &2085593533
+PhysicsMaterial:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: ' (Instance) (Instance)'
+  serializedVersion: 2
+  m_DynamicFriction: 0.6
+  m_StaticFriction: 0.6
+  m_Bounciness: 0
+  m_FrictionCombine: 0
+  m_BounceCombine: 0
 --- !u!1 &2089558975
 GameObject:
   m_ObjectHideFlags: 0

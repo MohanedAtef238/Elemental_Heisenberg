@@ -75,11 +75,18 @@ namespace Interactions
             }
         }
 
-        public void ExecuteReaction()
+        public void ExecuteReaction(bool force = false)
         {
-            if (!IsPrepped) return;
+            Debug.Log($"AlchemyZone: ExecuteReaction called (force: {force}, IsPrepped: {IsPrepped}, Vials: {_vialsInZone.Count})");
+            if (!IsPrepped && !force) 
+            {
+                Debug.LogWarning("AlchemyZone: Reaction aborted - Not prepped and not forced.");
+                return;
+            }
 
-            Vector3 spawnPos = transform.position;
+            // Use MeshRenderer bounds to find the true center of the paper
+            MeshRenderer renderer = GetComponent<MeshRenderer>();
+            Vector3 spawnPos = renderer != null ? renderer.bounds.center : transform.position;
 
             foreach (var vial in _vialsInZone)
             {
@@ -96,7 +103,8 @@ namespace Interactions
 
             if (_reactionPrefab != null)
             {
-                Instantiate(_reactionPrefab, spawnPos, Quaternion.identity);
+                GameObject effect = Instantiate(_reactionPrefab, spawnPos, Quaternion.identity);
+                Destroy(effect, 5f); // Cleanup effect after 5 seconds
             }
 
             if (_textPrefabs.Count > 0)
@@ -106,7 +114,8 @@ namespace Interactions
                     GameObject randomText = _textPrefabs[Random.Range(0, _textPrefabs.Count)];
                     Vector3 offset = new Vector3(Random.Range(-0.2f, 0.2f), Random.Range(0.1f, 0.3f), Random.Range(-0.2f, 0.2f));
                     Quaternion rot = Quaternion.Euler(0, Random.Range(0, 360), 0);
-                    Instantiate(randomText, spawnPos + offset, rot);
+                    GameObject textObj = Instantiate(randomText, spawnPos + offset, rot);
+                    Destroy(textObj, 3f); // Cleanup text after 3 seconds
                 }
             }
             
