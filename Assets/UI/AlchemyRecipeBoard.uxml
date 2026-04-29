@@ -2,6 +2,6 @@
     <Style src="project://database/Assets/UI/AlchemyRecipeBoard.uss?fileID=7433441132597879392&amp;guid=c2b18c8e5f1a4f118d9f2e7b631ee532&amp;type=3#AlchemyRecipeBoard"/>
     <ui:VisualElement class="board-shell">
         <ui:Label name="recipe-title" text="Known Recipes" class="board-title"/>
-        <ui:ScrollView name="recipe-list" class="recipe-list"/>
+        <ui:ScrollView name="recipe-list" class="recipe-list" vertical-scroller-position="Right" horizontal-scroller-position="Hidden"/>
     </ui:VisualElement>
 </ui:UXML>

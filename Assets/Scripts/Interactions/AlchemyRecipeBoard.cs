@@ -108,7 +108,10 @@ namespace Interactions
                 return;
             }
 
-            listRoot.Clear();
+            // Get the content container from the ScrollView
+            VisualElement contentContainer = listRoot.contentContainer;
+
+            contentContainer.Clear();
 
             foreach (AlchemyReactionRecipe recipe in _alchemyZone.ReactionRecipes)
             {
@@ -129,7 +132,7 @@ namespace Interactions
                 formula.AddToClassList("recipe-formula");
                 row.Add(formula);
 
-                listRoot.Add(row);
+                contentContainer.Add(row);
             }
         }
 
