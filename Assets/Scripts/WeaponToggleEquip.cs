@@ -23,6 +23,7 @@ public class WeaponToggleEquip : MonoBehaviour
     // ----- private runtime state -----
     private bool _isEquipped;
     private GameObject _spawnedWeapon;
+    private InputAction _resolvedTriggerAction;
 
     // -------------------------------------------------------
     // Lifecycle
@@ -30,18 +31,31 @@ public class WeaponToggleEquip : MonoBehaviour
 
     private void OnEnable()
     {
-        /*
-        if (triggerAction != null)
-            triggerAction.action.performed += OnTriggerPerformed;
-        */
+        _resolvedTriggerAction = triggerAction != null
+            ? triggerAction.action
+            : InputSystem.actions?.FindAction("XRI Left Interaction/Activate");
+
+        if (_resolvedTriggerAction != null)
+        {
+            _resolvedTriggerAction.performed += OnTriggerPerformed;
+            if (!_resolvedTriggerAction.enabled)
+            {
+                _resolvedTriggerAction.Enable();
+            }
+        }
+        else
+        {
+            Debug.LogWarning("WeaponToggleEquip: No trigger action assigned or found for 'XRI Left Interaction/Activate'.");
+        }
     }
 
     private void OnDisable()
     {
-        /*
-        if (triggerAction != null)
-            triggerAction.action.performed -= OnTriggerPerformed;
-        */
+        if (_resolvedTriggerAction != null)
+        {
+            _resolvedTriggerAction.performed -= OnTriggerPerformed;
+            _resolvedTriggerAction = null;
+        }
     }
 
     // -------------------------------------------------------
@@ -55,16 +69,47 @@ public class WeaponToggleEquip : MonoBehaviour
 
     private void Toggle()
     {
-        // Method disabled to prevent interference with alchemy system
+        if (_isEquipped)
+        {
+            UnequipWeapon();
+        }
+        else
+        {
+            EquipWeapon();
+        }
     }
 
-    private void EquipWeapon_DISABLED()
+    private void Update()
     {
-        // Method disabled to prevent interference with alchemy system
+        if (Keyboard.current != null && Keyboard.current.oKey.wasPressedThisFrame)
+        {
+            Toggle();
+        }
+    }
+
+    private void EquipWeapon()
+    {
+        if (weaponPrefab == null)
+        {
+            Debug.LogWarning("WeaponToggleEquip: No weapon prefab assigned.");
+            return;
+        }
+
+        Transform targetAttachPoint = attachPoint != null ? attachPoint : transform;
+        _spawnedWeapon = Instantiate(weaponPrefab, targetAttachPoint);
+        _spawnedWeapon.transform.localPosition = Vector3.zero;
+        _spawnedWeapon.transform.localRotation = Quaternion.identity;
+        _isEquipped = true;
     }
 
     private void UnequipWeapon()
     {
-        // Method disabled to prevent interference with alchemy system
+        if (_spawnedWeapon != null)
+        {
+            Destroy(_spawnedWeapon);
+        }
+
+        _spawnedWeapon = null;
+        _isEquipped = false;
     }
 }
