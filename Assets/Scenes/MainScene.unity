@@ -261617,6 +261617,10 @@ PrefabInstance:
       propertyPath: m_MoveSpeed
       value: 4.5
       objectReference: {fileID: 0}
+    - target: {fileID: 742272467831425975, guid: f6336ac4ac8b4d34bc5072418cdc62a0, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1717954561962503725, guid: f6336ac4ac8b4d34bc5072418cdc62a0, type: 3}
       propertyPath: m_Name
       value: XR Origin (XR Rig)
@@ -261689,13 +261693,13 @@ PrefabInstance:
       propertyPath: m_RaycastMask.m_Bits
       value: 4294967295
       objectReference: {fileID: 0}
-    - target: {fileID: 4083252680172266230, guid: f6336ac4ac8b4d34bc5072418cdc62a0, type: 3}
-      propertyPath: m_Enabled
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 4053579577978487484, guid: f6336ac4ac8b4d34bc5072418cdc62a0, type: 3}
       propertyPath: m_CastRadius
       value: 0.3
+      objectReference: {fileID: 0}
+    - target: {fileID: 4083252680172266230, guid: f6336ac4ac8b4d34bc5072418cdc62a0, type: 3}
+      propertyPath: m_Enabled
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5456733348963664102, guid: f6336ac4ac8b4d34bc5072418cdc62a0, type: 3}
       propertyPath: m_CastDistance
@@ -261728,10 +261732,6 @@ PrefabInstance:
     - target: {fileID: 6436123941575367715, guid: f6336ac4ac8b4d34bc5072418cdc62a0, type: 3}
       propertyPath: m_CastRadius
       value: 0.3
-      objectReference: {fileID: 0}
-    - target: {fileID: 742272467831425975, guid: f6336ac4ac8b4d34bc5072418cdc62a0, type: 3}
-      propertyPath: m_Enabled
-      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8877177980677234388, guid: f6336ac4ac8b4d34bc5072418cdc62a0, type: 3}
       propertyPath: m_InteractionLayers.m_Bits
@@ -330806,7 +330806,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Interactions.AlchemyZone
   _vialsInZone: []
   _reactionRecipes:
-  - label: 
+  - label: Fire and Ice
     reactingVials:
     - {fileID: 11400000, guid: 10aae65f508926b449e0a72be4bd9023, type: 2}
     - {fileID: 11400000, guid: 5703551fc9d693244ad46f8e59606aae, type: 2}
@@ -330814,6 +330814,29 @@ MonoBehaviour:
     reactionPrefab: {fileID: 1733941154}
     prepSkybox: {fileID: 2100000, guid: 39d27e80110a983468075fd1868610d7, type: 2}
     audioFeedback: {fileID: 8300000, guid: d0f323ea00236c1438d5da5d9a6414e0, type: 3}
+  - label: Fire and Water
+    reactingVials:
+    - {fileID: 11400000, guid: 10aae65f508926b449e0a72be4bd9023, type: 2}
+    - {fileID: 11400000, guid: 35b8056a4d58313439cb4033df1c8f9e, type: 2}
+    resultVialPrefab: {fileID: 1909264420}
+    reactionPrefab: {fileID: 1733941154}
+    prepSkybox: {fileID: 2100000, guid: 39d27e80110a983468075fd1868610d7, type: 2}
+    audioFeedback: {fileID: 8300000, guid: d0f323ea00236c1438d5da5d9a6414e0, type: 3}
+  - label: El Heisen Special
+    reactingVials:
+    - {fileID: 11400000, guid: 7f07149173a3ed34fa23926077fe780a, type: 2}
+    resultVialPrefab: {fileID: 1911206372}
+    reactionPrefab: {fileID: 35125341}
+    prepSkybox: {fileID: 2100000, guid: 8f2c8ef98c47442d4b0e1896539bf7f1, type: 2}
+    audioFeedback: {fileID: 8300000, guid: 045b52ce8764f4f4484aa814fb1aea67, type: 3}
+  - label: air and water
+    reactingVials:
+    - {fileID: 11400000, guid: c5d2032b455897b49af1830bce279d4c, type: 2}
+    - {fileID: 11400000, guid: 35b8056a4d58313439cb4033df1c8f9e, type: 2}
+    resultVialPrefab: {fileID: 2132646240}
+    reactionPrefab: {fileID: 861784896}
+    prepSkybox: {fileID: 2100000, guid: 7b0f2096b49ccfb4f8b47c8084d650fa, type: 2}
+    audioFeedback: {fileID: 8300000, guid: f22e87740453ac248871d5e33e57d4d8, type: 3}
   _textPrefabs:
   - {fileID: 5339739117810204693, guid: 26e1cb216e3635e4a820f58a1118d6b9, type: 3}
   - {fileID: 119183615461286708, guid: 141e1779869c79845bd243610f187f47, type: 3}
@@ -365267,6 +365290,11 @@ ParticleSystem:
         m_PostInfinity: 2
         m_RotationOrder: 4
     vectorLabel1_3: W
+--- !u!1 &1909264420 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1345105557649435795, guid: 2d8ed90570f5b254f9d667ebe553f6ba, type: 3}
+  m_PrefabInstance: {fileID: 242136318}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1909817803
 GameObject:
   m_ObjectHideFlags: 0
@@ -370158,6 +370186,11 @@ ParticleSystem:
         m_PostInfinity: 2
         m_RotationOrder: 4
     vectorLabel1_3: W
+--- !u!1 &1911206372 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1345105557649435795, guid: 2d8ed90570f5b254f9d667ebe553f6ba, type: 3}
+  m_PrefabInstance: {fileID: 908766970}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1919033340
 GameObject:
   m_ObjectHideFlags: 0
@@ -424349,6 +424382,11 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2121314451}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!1 &2132646240 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1345105557649435795, guid: 2d8ed90570f5b254f9d667ebe553f6ba, type: 3}
+  m_PrefabInstance: {fileID: 960579930}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &2139430166 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 410180, guid: b8606597093e47dbb476bdb09448f37f, type: 3}
