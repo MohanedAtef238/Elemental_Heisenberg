@@ -2,14 +2,7 @@
     flex-grow: 0;
     width: 33%;
     height: auto;
-    background-color: rgb(255, 183, 9);
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
-    border-left-color: rgb(255, 183, 9);
-    border-right-color: rgb(255, 183, 9);
-    border-top-color: rgb(255, 183, 9);
-    border-bottom-color: rgb(255, 183, 9);
-    transition-property: background-color;
-    transition-duration: 0.3s;
 }
 
 .menu-button {
