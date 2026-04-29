@@ -101,7 +101,7 @@ namespace Interactions
             }
         }
 
-        private void SetPrepped(bool prepped, Material prepSkybox = null)
+        private void SetPrepped(bool prepped, Material prepSkybox = null, bool restoreDefaultSkybox = true)
         {
             if (IsPrepped == prepped && _activePrepSkybox == prepSkybox) return;
             
@@ -122,8 +122,11 @@ namespace Interactions
             }
             else
             {
-                RenderSettings.skybox = _defaultSkybox;
-                DynamicGI.UpdateEnvironment();
+                if (restoreDefaultSkybox)
+                {
+                    RenderSettings.skybox = _defaultSkybox;
+                    DynamicGI.UpdateEnvironment();
+                }
             }
         }
 
@@ -165,7 +168,15 @@ namespace Interactions
                 }
             }
 
-            SetPrepped(false);
+            Material reactionSkybox = recipeToExecute.prepSkybox;
+            SetPrepped(false, restoreDefaultSkybox: false);
+            _currentRecipe = null;
+
+            if (reactionSkybox != null)
+            {
+                RenderSettings.skybox = reactionSkybox;
+                DynamicGI.UpdateEnvironment();
+            }
 
             if (recipeToExecute.resultVialPrefab != null)
             {
