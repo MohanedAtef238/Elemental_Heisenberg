@@ -49,6 +49,7 @@ namespace Interactions
         private AlchemyReactionRecipe _currentRecipe;
         private AudioSource _audioSource;
         public bool IsPrepped { get; private set; }
+        public IReadOnlyList<AlchemyReactionRecipe> ReactionRecipes => _reactionRecipes;
 
         private void Awake()
         {

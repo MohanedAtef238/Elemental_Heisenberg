@@ -1,0 +1,67 @@
+.board-shell {
+    width: 100%;
+    height: 100%;
+    padding-top: 24px;
+    padding-right: 24px;
+    padding-bottom: 24px;
+    padding-left: 24px;
+    border-top-width: 3px;
+    border-right-width: 3px;
+    border-bottom-width: 3px;
+    border-left-width: 3px;
+    border-top-color: rgb(224, 179, 73);
+    border-right-color: rgb(224, 179, 73);
+    border-bottom-color: rgb(224, 179, 73);
+    border-left-color: rgb(224, 179, 73);
+    border-top-left-radius: 28px;
+    border-top-right-radius: 28px;
+    border-bottom-right-radius: 28px;
+    border-bottom-left-radius: 28px;
+    background-color: rgba(24, 18, 14, 0.92);
+}
+
+.board-title {
+    color: rgb(255, 233, 180);
+    font-size: 32px;
+    -unity-font-style: bold;
+    margin-bottom: 18px;
+    -unity-text-align: middle-center;
+}
+
+.recipe-list {
+    flex-grow: 1;
+}
+
+.recipe-row {
+    margin-bottom: 12px;
+    padding-top: 10px;
+    padding-right: 14px;
+    padding-bottom: 10px;
+    padding-left: 14px;
+    border-top-width: 1px;
+    border-right-width: 1px;
+    border-bottom-width: 1px;
+    border-left-width: 1px;
+    border-top-color: rgba(255, 215, 138, 0.35);
+    border-right-color: rgba(255, 215, 138, 0.35);
+    border-bottom-color: rgba(255, 215, 138, 0.35);
+    border-left-color: rgba(255, 215, 138, 0.35);
+    border-top-left-radius: 16px;
+    border-top-right-radius: 16px;
+    border-bottom-right-radius: 16px;
+    border-bottom-left-radius: 16px;
+    background-color: rgba(255, 249, 235, 0.05);
+}
+
+.recipe-name {
+    color: rgb(244, 202, 108);
+    font-size: 14px;
+    -unity-font-style: bold;
+    margin-bottom: 4px;
+}
+
+.recipe-formula {
+    color: rgb(245, 239, 226);
+    font-size: 22px;
+    white-space: normal;
+}

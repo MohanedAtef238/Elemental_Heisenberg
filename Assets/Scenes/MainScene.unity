@@ -54642,6 +54642,61 @@ ParticleSystem:
         m_PostInfinity: 2
         m_RotationOrder: 4
     vectorLabel1_3: W
+--- !u!1 &381728465
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 381728469}
+  - component: {fileID: 381728470}
+  m_Layer: 5
+  m_Name: AlchemyRecipeBoard
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &381728469
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 381728465}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0.7071068, z: 0, w: 0.7071068}
+  m_LocalPosition: {x: 4.81, y: 1.5, z: -0.85}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &381728470
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 381728465}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 19102, guid: 0000000000000000e000000000000000, type: 0}
+  m_Name: 
+  m_EditorClassIdentifier: UnityEngine.dll::UnityEngine.UIElements.UIDocument
+  m_PanelSettings: {fileID: 11400000, guid: e7496767898f08e45b3e15f384905b23, type: 2}
+  m_ParentUI: {fileID: 0}
+  sourceAsset: {fileID: 9197481963319205126, guid: b1f27d6d1d8c4d6dbd20a8fd2de93c21, type: 3}
+  m_SortingOrder: 0
+  m_Position: 0
+  m_WorldSpaceSizeMode: 1
+  m_WorldSpaceWidth: 501
+  m_WorldSpaceHeight: 280
+  m_PivotReferenceSize: 0
+  m_Pivot: 0
+  m_WorldSpaceCollider: {fileID: 0}
 --- !u!1 &396951204
 GameObject:
   m_ObjectHideFlags: 0
@@ -330753,6 +330808,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 100000, guid: 2cb0dc68466949f6bb5351158ceae9fb, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1755678364}
+    - targetCorrespondingSourceObject: {fileID: 100000, guid: 2cb0dc68466949f6bb5351158ceae9fb, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1755678366}
   m_SourcePrefab: {fileID: 100100000, guid: 2cb0dc68466949f6bb5351158ceae9fb, type: 3}
 --- !u!4 &1755678355 stripped
 Transform:
@@ -330858,6 +330916,27 @@ MonoBehaviour:
   debugTriggerAction: {fileID: 0}
   requiredImpactForce: 0.5
   strikeRepeatCooldown: 0.2
+--- !u!114 &1755678366
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 947349094}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4a7f2e3b0f654b39a6f3b1c1d0e9a111, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Interactions.AlchemyRecipeBoard
+  _panelSettings: {fileID: 11400000, guid: e7496767898f08e45b3e15f384905b23, type: 2}
+  _documentAsset: {fileID: 9197481963319205126, guid: b1f27d6d1d8c4d6dbd20a8fd2de93c21, type: 3}
+  _title: Known Recipes
+  _boardOffset: {x: 0.95, y: 0.85, z: 0.05}
+  _boardRotationEuler: {x: 8, y: -110, z: 0}
+  _worldSpaceWidth: 780
+  _worldSpaceHeight: 860
+  _boardDocument: {fileID: 381728470}
+  _boardObject: {fileID: 381728465}
 --- !u!1 &1766618390
 GameObject:
   m_ObjectHideFlags: 0
@@ -439139,3 +439218,4 @@ SceneRoots:
   - {fileID: 801929589}
   - {fileID: 1986899224}
   - {fileID: 997569211}
+  - {fileID: 381728469}
