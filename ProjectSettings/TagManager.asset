@@ -7,6 +7,7 @@ TagManager:
   - vial_effects
   - FxTemporaire
   - Vial
+  - Vial_PureEssence
   layers:
   - Default
   - TransparentFX

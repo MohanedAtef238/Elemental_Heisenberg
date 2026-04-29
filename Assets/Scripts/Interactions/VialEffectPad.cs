@@ -39,11 +39,14 @@ namespace Interactions
         /// </summary>
         private static void ActivateEffects(Collider vialCollider, bool play)
         {
-            // Use transform.root to reach the vial's top-level GameObject,
-            // then search down through all children for effects.
-            Transform root = vialCollider.transform.root;
+            // Target only the specific vial that triggered the pad.
+            // We look for the VialVFXContainer to ensure we have the correct object.
+            var container = vialCollider.GetComponentInParent<VialVFXContainer>();
+            if (container == null) return;
 
-            ParticleSystem[] systems = root.GetComponentsInChildren<ParticleSystem>(true);
+            Transform vialTransform = container.transform;
+
+            ParticleSystem[] systems = vialTransform.GetComponentsInChildren<ParticleSystem>(true);
             foreach (var ps in systems)
             {
                 if (play)
@@ -57,7 +60,7 @@ namespace Interactions
                 }
             }
 
-            AudioSource[] sources = root.GetComponentsInChildren<AudioSource>(true);
+            AudioSource[] sources = vialTransform.GetComponentsInChildren<AudioSource>(true);
             foreach (var source in sources)
             {
                 if (play)
