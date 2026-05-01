@@ -39696,212 +39696,23 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e4574f9ffad561c4fba955054bd22d97, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Interactions.InteractionCoordinator
-  _interactions:
+  _alchemyZone: {fileID: 1755678362}
+  _atmosphereController: {fileID: 1200266177}
+  _screenTintController: {fileID: 1200266176}
+  _recipes:
   - label: Scalding Steam
-    itemA: {fileID: 11400000, guid: 10aae65f508926b449e0a72be4bd9023, type: 2}
-    itemB: {fileID: 11400000, guid: 35b8056a4d58313439cb4033df1c8f9e, type: 2}
-    result:
-      changeSky: 1
-      skyboxMaterial: {fileID: 2100000, guid: aed657681c6812845bb7736c343b5e9b, type: 2}
-      applyScreenTint: 0
-      screenTintColor: {r: 1, g: 1, b: 1, a: 1}
-      soundEffect: {fileID: 0}
-      weatherEffectPrefab: {fileID: 1344314377593938, guid: 9e03786a9517b604d8e930182607a128, type: 3}
-      outputVialDefinition: {fileID: 11400000, guid: 01fc533bb306f5642903baf47d4c64d8, type: 2}
-      baseVialPrefab: {fileID: 2410793874170262412, guid: 027e111379ab58342818ea7d0953ee8f, type: 3}
-  - label: Conductive Plasma
-    itemA: {fileID: 11400000, guid: 711ec5c85ed3e394d933755c2a7deb03, type: 2}
-    itemB: {fileID: 11400000, guid: 35b8056a4d58313439cb4033df1c8f9e, type: 2}
-    result:
-      changeSky: 0
-      skyboxMaterial: {fileID: 0}
-      applyScreenTint: 0
-      screenTintColor: {r: 1, g: 1, b: 1, a: 1}
-      soundEffect: {fileID: 0}
-      weatherEffectPrefab: {fileID: 1000011128802252, guid: 96730f8640590934eacb6f860058e7f9, type: 3}
-      outputVialDefinition: {fileID: 11400000, guid: 48e13bad827e4fb408e064c7d6c17c86, type: 2}
-      baseVialPrefab: {fileID: 1345105557649435795, guid: 2d8ed90570f5b254f9d667ebe553f6ba, type: 3}
-  - label: Molten Slag
-    itemA: {fileID: 11400000, guid: d7c8ca6199d856f49a5b838741487422, type: 2}
-    itemB: {fileID: 11400000, guid: 10aae65f508926b449e0a72be4bd9023, type: 2}
-    result:
-      changeSky: 0
-      skyboxMaterial: {fileID: 0}
-      applyScreenTint: 0
-      screenTintColor: {r: 1, g: 1, b: 1, a: 1}
-      soundEffect: {fileID: 0}
-      weatherEffectPrefab: {fileID: 1121192042590650, guid: e1b08032bec16ba4eb1ae23cbd572664, type: 3}
-      outputVialDefinition: {fileID: 11400000, guid: ec0dbc21089d1a242ada08f7249b3ede, type: 2}
-      baseVialPrefab: {fileID: 1345105557649435795, guid: 2d8ed90570f5b254f9d667ebe553f6ba, type: 3}
-  - label: Blizzard Shards
-    itemA: {fileID: 11400000, guid: 5703551fc9d693244ad46f8e59606aae, type: 2}
-    itemB: {fileID: 11400000, guid: c5d2032b455897b49af1830bce279d4c, type: 2}
-    result:
-      changeSky: 0
-      skyboxMaterial: {fileID: 0}
-      applyScreenTint: 0
-      screenTintColor: {r: 1, g: 1, b: 1, a: 1}
-      soundEffect: {fileID: 0}
-      weatherEffectPrefab: {fileID: 4932088507883938021, guid: 0e5709a7ddb77924090c112cf73bb98a, type: 3}
-      outputVialDefinition: {fileID: 11400000, guid: 50fc7099b6aa70343927a8b22cf743ad, type: 2}
-      baseVialPrefab: {fileID: 1345105557649435795, guid: 2d8ed90570f5b254f9d667ebe553f6ba, type: 3}
-  - label: Static Rift
-    itemA: {fileID: 11400000, guid: e947d64c455f8044ead7ca733e92a720, type: 2}
-    itemB: {fileID: 11400000, guid: 711ec5c85ed3e394d933755c2a7deb03, type: 2}
-    result:
-      changeSky: 0
-      skyboxMaterial: {fileID: 0}
-      applyScreenTint: 0
-      screenTintColor: {r: 1, g: 1, b: 1, a: 1}
-      soundEffect: {fileID: 0}
-      weatherEffectPrefab: {fileID: 2965222256817593503, guid: a164e676dbbd6e54587237e619372c98, type: 3}
-      outputVialDefinition: {fileID: 11400000, guid: 3785c6074db57584186ae22ea20b2a59, type: 2}
-      baseVialPrefab: {fileID: 1345105557649435795, guid: 2d8ed90570f5b254f9d667ebe553f6ba, type: 3}
-  - label: Twilight Flare
-    itemA: {fileID: 0}
-    itemB: {fileID: 11400000, guid: bea32a3774e02164d9907ba60052b961, type: 2}
-    result:
-      changeSky: 0
-      skyboxMaterial: {fileID: 0}
-      applyScreenTint: 0
-      screenTintColor: {r: 1, g: 1, b: 1, a: 1}
-      soundEffect: {fileID: 0}
-      weatherEffectPrefab: {fileID: 6126188424833946103, guid: a58aa9a78f2b45b45bb0f3e2e1e3ad3c, type: 3}
-      outputVialDefinition: {fileID: 11400000, guid: 6dd4326f2608bbe4488554bde535a6af, type: 2}
-      baseVialPrefab: {fileID: 1345105557649435795, guid: 2d8ed90570f5b254f9d667ebe553f6ba, type: 3}
-  - label: Petrifying Mud
-    itemA: {fileID: 11400000, guid: d7c8ca6199d856f49a5b838741487422, type: 2}
-    itemB: {fileID: 11400000, guid: 35b8056a4d58313439cb4033df1c8f9e, type: 2}
-    result:
-      changeSky: 0
-      skyboxMaterial: {fileID: 0}
-      applyScreenTint: 0
-      screenTintColor: {r: 1, g: 1, b: 1, a: 1}
-      soundEffect: {fileID: 0}
-      weatherEffectPrefab: {fileID: 1000010675638318, guid: a3768c8a9d1b90d4bb0eb0e4bdbe730c, type: 3}
-      outputVialDefinition: {fileID: 11400000, guid: bfb6ea28202d0f64d90325988d37e1fe, type: 2}
-      baseVialPrefab: {fileID: 1345105557649435795, guid: 2d8ed90570f5b254f9d667ebe553f6ba, type: 3}
-  - label: Arcane Inferno
-    itemA: {fileID: 11400000, guid: e947d64c455f8044ead7ca733e92a720, type: 2}
-    itemB: {fileID: 11400000, guid: 10aae65f508926b449e0a72be4bd9023, type: 2}
-    result:
-      changeSky: 0
-      skyboxMaterial: {fileID: 0}
-      applyScreenTint: 0
-      screenTintColor: {r: 1, g: 1, b: 1, a: 1}
-      soundEffect: {fileID: 0}
-      weatherEffectPrefab: {fileID: 1121192042590650, guid: e1b08032bec16ba4eb1ae23cbd572664, type: 3}
-      outputVialDefinition: {fileID: 11400000, guid: 3aceef0945cdc7143af8b2e24d41aa90, type: 2}
-      baseVialPrefab: {fileID: 1345105557649435795, guid: 2d8ed90570f5b254f9d667ebe553f6ba, type: 3}
-  - label: Abyssal Smog
-    itemA: {fileID: 11400000, guid: c5d2032b455897b49af1830bce279d4c, type: 2}
-    itemB: {fileID: 11400000, guid: 7f07149173a3ed34fa23926077fe780a, type: 2}
-    result:
-      changeSky: 0
-      skyboxMaterial: {fileID: 0}
-      applyScreenTint: 0
-      screenTintColor: {r: 1, g: 1, b: 1, a: 1}
-      soundEffect: {fileID: 0}
-      weatherEffectPrefab: {fileID: 6126188424833946103, guid: a58aa9a78f2b45b45bb0f3e2e1e3ad3c, type: 3}
-      outputVialDefinition: {fileID: 11400000, guid: fddff34b1e1858f40bb2f609c2235f98, type: 2}
-      baseVialPrefab: {fileID: 1345105557649435795, guid: 2d8ed90570f5b254f9d667ebe553f6ba, type: 3}
-  - label: Pure Essence
-    itemA: {fileID: 11400000, guid: bea32a3774e02164d9907ba60052b961, type: 2}
-    itemB: {fileID: 11400000, guid: 35b8056a4d58313439cb4033df1c8f9e, type: 2}
-    result:
-      changeSky: 0
-      skyboxMaterial: {fileID: 0}
-      applyScreenTint: 0
-      screenTintColor: {r: 1, g: 1, b: 1, a: 1}
-      soundEffect: {fileID: 0}
-      weatherEffectPrefab: {fileID: 9017484664307500583, guid: 1245b8d2997d5b34fb1637be70a7eb05, type: 3}
-      outputVialDefinition: {fileID: 11400000, guid: 15b2482cac5b27c4e99e4be8274712b1, type: 2}
-      baseVialPrefab: {fileID: 1345105557649435795, guid: 2d8ed90570f5b254f9d667ebe553f6ba, type: 3}
-  - label: Meteor Strike
-    itemA: {fileID: 11400000, guid: 6f7d2a083847fa44f8d6c63115d34780, type: 2}
-    itemB: {fileID: 11400000, guid: d7c8ca6199d856f49a5b838741487422, type: 2}
-    result:
-      changeSky: 0
-      skyboxMaterial: {fileID: 0}
-      applyScreenTint: 0
-      screenTintColor: {r: 1, g: 1, b: 1, a: 1}
-      soundEffect: {fileID: 0}
-      weatherEffectPrefab: {fileID: 7957833072274404953, guid: 3355f6bfa6db8b24281b827de929694c, type: 3}
-      outputVialDefinition: {fileID: 11400000, guid: 8e52c754f74462d43a7a85f081b7e3a1, type: 2}
-      baseVialPrefab: {fileID: 1345105557649435795, guid: 2d8ed90570f5b254f9d667ebe553f6ba, type: 3}
-  - label: Superheated Ion Cloud
-    itemA: {fileID: 11400000, guid: 01fc533bb306f5642903baf47d4c64d8, type: 2}
-    itemB: {fileID: 11400000, guid: 711ec5c85ed3e394d933755c2a7deb03, type: 2}
-    result:
-      changeSky: 0
-      skyboxMaterial: {fileID: 0}
-      applyScreenTint: 0
-      screenTintColor: {r: 1, g: 1, b: 1, a: 1}
-      soundEffect: {fileID: 0}
-      weatherEffectPrefab: {fileID: 2707303645313174804, guid: 3ac741c58ee37a941b5408ec58f21743, type: 3}
-      outputVialDefinition: {fileID: 11400000, guid: 4daeb56cc9808f14ba4da58bc8cdd32e, type: 2}
-      baseVialPrefab: {fileID: 2410793874170262412, guid: 027e111379ab58342818ea7d0953ee8f, type: 3}
-  - label: Volcanic Glass
-    itemA: {fileID: 11400000, guid: ec0dbc21089d1a242ada08f7249b3ede, type: 2}
-    itemB: {fileID: 11400000, guid: 5703551fc9d693244ad46f8e59606aae, type: 2}
-    result:
-      changeSky: 0
-      skyboxMaterial: {fileID: 0}
-      applyScreenTint: 0
-      screenTintColor: {r: 1, g: 1, b: 1, a: 1}
-      soundEffect: {fileID: 0}
-      weatherEffectPrefab: {fileID: 1121192042590650, guid: e1b08032bec16ba4eb1ae23cbd572664, type: 3}
-      outputVialDefinition: {fileID: 11400000, guid: 8d7a7ca21ece2b24696ea4b14486aa4b, type: 2}
-      baseVialPrefab: {fileID: 2410793874170262412, guid: 027e111379ab58342818ea7d0953ee8f, type: 3}
-  - label: Aetheric Battery
-    itemA: {fileID: 11400000, guid: 48e13bad827e4fb408e064c7d6c17c86, type: 2}
-    itemB: {fileID: 11400000, guid: e947d64c455f8044ead7ca733e92a720, type: 2}
-    result:
-      changeSky: 0
-      skyboxMaterial: {fileID: 0}
-      applyScreenTint: 0
-      screenTintColor: {r: 1, g: 1, b: 1, a: 1}
-      soundEffect: {fileID: 0}
-      weatherEffectPrefab: {fileID: 4749980201479958301, guid: a4cbca814b838a5458720cd2f8d6a501, type: 3}
-      outputVialDefinition: {fileID: 11400000, guid: c07b45caef13968499eed25720a1a6e0, type: 2}
-      baseVialPrefab: {fileID: 2410793874170262412, guid: 027e111379ab58342818ea7d0953ee8f, type: 3}
-  - label: Living Quicksand
-    itemA: {fileID: 11400000, guid: bfb6ea28202d0f64d90325988d37e1fe, type: 2}
-    itemB: {fileID: 0}
-    result:
-      changeSky: 0
-      skyboxMaterial: {fileID: 0}
-      applyScreenTint: 0
-      screenTintColor: {r: 1, g: 1, b: 1, a: 1}
-      soundEffect: {fileID: 0}
-      weatherEffectPrefab: {fileID: 6126188424833946103, guid: a58aa9a78f2b45b45bb0f3e2e1e3ad3c, type: 3}
-      outputVialDefinition: {fileID: 11400000, guid: 8482e9ea950a6e149ab4c003f6bfa9e5, type: 2}
-      baseVialPrefab: {fileID: 2410793874170262412, guid: 027e111379ab58342818ea7d0953ee8f, type: 3}
-  - label: Elixir of Divinity
-    itemA: {fileID: 11400000, guid: 15b2482cac5b27c4e99e4be8274712b1, type: 2}
-    itemB: {fileID: 11400000, guid: e947d64c455f8044ead7ca733e92a720, type: 2}
-    result:
-      changeSky: 0
-      skyboxMaterial: {fileID: 0}
-      applyScreenTint: 0
-      screenTintColor: {r: 1, g: 1, b: 1, a: 1}
-      soundEffect: {fileID: 0}
-      weatherEffectPrefab: {fileID: 3744133877081091469, guid: a2a060732547fe64581bb0cb3c2bdf1d, type: 3}
-      outputVialDefinition: {fileID: 11400000, guid: dee0eef01582bd84093ff3ca957a2aa9, type: 2}
-      baseVialPrefab: {fileID: 2410793874170262412, guid: 027e111379ab58342818ea7d0953ee8f, type: 3}
-  - label: Pressure Bomb
-    itemA: {fileID: 11400000, guid: ec0dbc21089d1a242ada08f7249b3ede, type: 2}
-    itemB: {fileID: 11400000, guid: c5d2032b455897b49af1830bce279d4c, type: 2}
-    result:
-      changeSky: 0
-      skyboxMaterial: {fileID: 0}
-      applyScreenTint: 0
-      screenTintColor: {r: 1, g: 1, b: 1, a: 1}
-      soundEffect: {fileID: 0}
-      weatherEffectPrefab: {fileID: 1121192042590650, guid: e1b08032bec16ba4eb1ae23cbd572664, type: 3}
-      outputVialDefinition: {fileID: 11400000, guid: 18f0e5b41fb8db041999fc3289bb3ef6, type: 2}
-      baseVialPrefab: {fileID: 2410793874170262412, guid: 027e111379ab58342818ea7d0953ee8f, type: 3}
-  _screenTint: {fileID: 1200266173}
+    reactingVials:
+    - {fileID: 11400000, guid: 10aae65f508926b449e0a72be4bd9023, type: 2}
+    - {fileID: 11400000, guid: 35b8056a4d58313439cb4033df1c8f9e, type: 2}
+    resultVialPrefab: {fileID: 2410793874170262412, guid: 027e111379ab58342818ea7d0953ee8f, type: 3}
+    reactionPrefab: {fileID: 8764043878647920493, guid: c4ed38c72957f2241ad144a1614956d9, type: 3}
+    prepSkybox: {fileID: 2100000, guid: 44d0573bf6d91e447b62f3aff840f2ae, type: 2}
+    screenTint: {r: 0.43921572, g: 0.43529415, b: 0.43921572, a: 0}
+    audioFeedback: {fileID: 8300000, guid: f7ef2fa267735db46bca7db1b9ebce60, type: 3}
+    resultDefinition: {fileID: 11400000, guid: 01fc533bb306f5642903baf47d4c64d8, type: 2}
+    resultTooltip: Scalding Steam
+    resultEffectOverride: {fileID: 6526302276393259002, guid: f9d9793366789ae48a7e1b0692763acc, type: 3}
+    resultIntensity: 2
 --- !u!1 &289106924
 GameObject:
   m_ObjectHideFlags: 0
@@ -158394,15 +158205,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4815938364229597180, guid: 2d8ed90570f5b254f9d667ebe553f6ba, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0.2226
+      value: 2.351
       objectReference: {fileID: 0}
     - target: {fileID: 4815938364229597180, guid: 2d8ed90570f5b254f9d667ebe553f6ba, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.0503
+      value: 0.002
       objectReference: {fileID: 0}
     - target: {fileID: 4815938364229597180, guid: 2d8ed90570f5b254f9d667ebe553f6ba, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -0.3013
+      value: 1.715
       objectReference: {fileID: 0}
     - target: {fileID: 4815938364229597180, guid: 2d8ed90570f5b254f9d667ebe553f6ba, type: 3}
       propertyPath: m_LocalRotation.w
@@ -163457,9 +163268,33 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 8
       objectReference: {fileID: 0}
+    - target: {fileID: 2036260645340553652, guid: 2d8ed90570f5b254f9d667ebe553f6ba, type: 3}
+      propertyPath: m_Size.x
+      value: 0.20658493
+      objectReference: {fileID: 0}
+    - target: {fileID: 2036260645340553652, guid: 2d8ed90570f5b254f9d667ebe553f6ba, type: 3}
+      propertyPath: m_Size.y
+      value: 0.18056345
+      objectReference: {fileID: 0}
+    - target: {fileID: 2036260645340553652, guid: 2d8ed90570f5b254f9d667ebe553f6ba, type: 3}
+      propertyPath: m_Size.z
+      value: 0.22115803
+      objectReference: {fileID: 0}
+    - target: {fileID: 2036260645340553652, guid: 2d8ed90570f5b254f9d667ebe553f6ba, type: 3}
+      propertyPath: m_Center.x
+      value: -0.36028123
+      objectReference: {fileID: 0}
+    - target: {fileID: 2036260645340553652, guid: 2d8ed90570f5b254f9d667ebe553f6ba, type: 3}
+      propertyPath: m_Center.y
+      value: 0.0014486313
+      objectReference: {fileID: 0}
+    - target: {fileID: 2036260645340553652, guid: 2d8ed90570f5b254f9d667ebe553f6ba, type: 3}
+      propertyPath: m_Center.z
+      value: -0.4628954
+      objectReference: {fileID: 0}
     - target: {fileID: 2572496802619445585, guid: 2d8ed90570f5b254f9d667ebe553f6ba, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -0.294
+      value: -0.354
       objectReference: {fileID: 0}
     - target: {fileID: 2572496802619445585, guid: 2d8ed90570f5b254f9d667ebe553f6ba, type: 3}
       propertyPath: m_LocalPosition.y
@@ -163495,7 +163330,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4815938364229597180, guid: 2d8ed90570f5b254f9d667ebe553f6ba, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -0.266
+      value: -0.276
       objectReference: {fileID: 0}
     - target: {fileID: 4815938364229597180, guid: 2d8ed90570f5b254f9d667ebe553f6ba, type: 3}
       propertyPath: m_LocalPosition.y
@@ -163503,7 +163338,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4815938364229597180, guid: 2d8ed90570f5b254f9d667ebe553f6ba, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0.503
+      value: 0.697
       objectReference: {fileID: 0}
     - target: {fileID: 4815938364229597180, guid: 2d8ed90570f5b254f9d667ebe553f6ba, type: 3}
       propertyPath: m_LocalRotation.w
@@ -168399,11 +168234,6 @@ ParticleSystem:
         m_PostInfinity: 2
         m_RotationOrder: 4
     vectorLabel1_3: W
---- !u!1 &942687395 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 1345105557649435795, guid: 2d8ed90570f5b254f9d667ebe553f6ba, type: 3}
-  m_PrefabInstance: {fileID: 880635008}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &947349094 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 100000, guid: 2cb0dc68466949f6bb5351158ceae9fb, type: 3}
@@ -227235,7 +227065,8 @@ GameObject:
   m_Component:
   - component: {fileID: 1200266175}
   - component: {fileID: 1200266174}
-  - component: {fileID: 1200266173}
+  - component: {fileID: 1200266176}
+  - component: {fileID: 1200266177}
   m_Layer: 0
   m_Name: ScreenTintController
   m_TagString: Untagged
@@ -227243,18 +227074,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &1200266173
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1200266172}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5b249b07346a8584193d0b3d7ce91bad, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::Interactions.ScreenTintEffect
 --- !u!114 &1200266174
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -227287,6 +227106,30 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1200266176
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1200266172}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c85e573ba24c93b49a51226f9cf22a14, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Interactions.ScreenTintController
+--- !u!114 &1200266177
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1200266172}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4464c5134f7b28b4fbdb53d4aba7260b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Interactions.AtmosphereController
 --- !u!1 &1224201982 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 1717954561962503725, guid: f6336ac4ac8b4d34bc5072418cdc62a0, type: 3}
@@ -330960,38 +330803,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Interactions.AlchemyZone
   _vialsInZone: []
-  _reactionRecipes:
-  - label: Fire and Ice
-    reactingVials:
-    - {fileID: 11400000, guid: 10aae65f508926b449e0a72be4bd9023, type: 2}
-    - {fileID: 11400000, guid: 5703551fc9d693244ad46f8e59606aae, type: 2}
-    resultVialPrefab: {fileID: 942687395}
-    reactionPrefab: {fileID: 1733941154}
-    prepSkybox: {fileID: 2100000, guid: 39d27e80110a983468075fd1868610d7, type: 2}
-    audioFeedback: {fileID: 8300000, guid: d0f323ea00236c1438d5da5d9a6414e0, type: 3}
-  - label: Fire and Water
-    reactingVials:
-    - {fileID: 11400000, guid: 10aae65f508926b449e0a72be4bd9023, type: 2}
-    - {fileID: 11400000, guid: 35b8056a4d58313439cb4033df1c8f9e, type: 2}
-    resultVialPrefab: {fileID: 1909264420}
-    reactionPrefab: {fileID: 1733941154}
-    prepSkybox: {fileID: 2100000, guid: 39d27e80110a983468075fd1868610d7, type: 2}
-    audioFeedback: {fileID: 8300000, guid: d0f323ea00236c1438d5da5d9a6414e0, type: 3}
-  - label: El Heisen Special
-    reactingVials:
-    - {fileID: 11400000, guid: 7f07149173a3ed34fa23926077fe780a, type: 2}
-    resultVialPrefab: {fileID: 1911206372}
-    reactionPrefab: {fileID: 35125341}
-    prepSkybox: {fileID: 2100000, guid: 8f2c8ef98c47442d4b0e1896539bf7f1, type: 2}
-    audioFeedback: {fileID: 8300000, guid: 045b52ce8764f4f4484aa814fb1aea67, type: 3}
-  - label: air and water
-    reactingVials:
-    - {fileID: 11400000, guid: c5d2032b455897b49af1830bce279d4c, type: 2}
-    - {fileID: 11400000, guid: 35b8056a4d58313439cb4033df1c8f9e, type: 2}
-    resultVialPrefab: {fileID: 2132646240}
-    reactionPrefab: {fileID: 861784896}
-    prepSkybox: {fileID: 2100000, guid: 7b0f2096b49ccfb4f8b47c8084d650fa, type: 2}
-    audioFeedback: {fileID: 8300000, guid: f22e87740453ac248871d5e33e57d4d8, type: 3}
   _textPrefabs:
   - {fileID: 5339739117810204693, guid: 26e1cb216e3635e4a820f58a1118d6b9, type: 3}
   - {fileID: 119183615461286708, guid: 141e1779869c79845bd243610f187f47, type: 3}
@@ -331009,7 +330820,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f8b9007bee78f554dbcad79911d296c7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Interactions.AnvilSurface
-  _alchemyZone: {fileID: 1755678362}
+  _coordinator: {fileID: 288940034}
   debugTriggerAction: {fileID: 0}
   requiredImpactForce: 0.5
   strikeRepeatCooldown: 0.2
@@ -331028,6 +330839,7 @@ MonoBehaviour:
   _panelSettings: {fileID: 11400000, guid: e7496767898f08e45b3e15f384905b23, type: 2}
   _documentAsset: {fileID: 9197481963319205126, guid: b1f27d6d1d8c4d6dbd20a8fd2de93c21, type: 3}
   _title: Known Recipes
+  _coordinator: {fileID: 288940034}
   _boardOffset: {x: 0.95, y: 0.85, z: 0.05}
   _boardRotationEuler: {x: 8, y: -110, z: 0}
   _worldSpaceWidth: 780
@@ -345472,6 +345284,18 @@ PrefabInstance:
       value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 2036260645340553652, guid: 2d8ed90570f5b254f9d667ebe553f6ba, type: 3}
+      propertyPath: m_Size.y
+      value: 0.15326531
+      objectReference: {fileID: 0}
+    - target: {fileID: 2036260645340553652, guid: 2d8ed90570f5b254f9d667ebe553f6ba, type: 3}
+      propertyPath: m_Center.y
+      value: 0.07372335
+      objectReference: {fileID: 0}
+    - target: {fileID: 2036260645340553652, guid: 2d8ed90570f5b254f9d667ebe553f6ba, type: 3}
+      propertyPath: m_Center.z
+      value: -0.0027792007
+      objectReference: {fileID: 0}
+    - target: {fileID: 2036260645340553652, guid: 2d8ed90570f5b254f9d667ebe553f6ba, type: 3}
       propertyPath: m_Material
       value: 
       objectReference: {fileID: 463483116}
@@ -345485,7 +345309,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4815938364229597180, guid: 2d8ed90570f5b254f9d667ebe553f6ba, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.388
+      value: -0.404
       objectReference: {fileID: 0}
     - target: {fileID: 4815938364229597180, guid: 2d8ed90570f5b254f9d667ebe553f6ba, type: 3}
       propertyPath: m_LocalPosition.z
@@ -350817,7 +350641,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f8b9007bee78f554dbcad79911d296c7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Interactions.AnvilSurface
-  _alchemyZone: {fileID: 1755678362}
+  _coordinator: {fileID: 0}
   debugTriggerAction: {fileID: 0}
   requiredImpactForce: 3
   strikeRepeatCooldown: 0.2
@@ -365466,11 +365290,6 @@ ParticleSystem:
         m_PostInfinity: 2
         m_RotationOrder: 4
     vectorLabel1_3: W
---- !u!1 &1909264420 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 1345105557649435795, guid: 2d8ed90570f5b254f9d667ebe553f6ba, type: 3}
-  m_PrefabInstance: {fileID: 242136318}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1909817803
 GameObject:
   m_ObjectHideFlags: 0
@@ -370362,11 +370181,6 @@ ParticleSystem:
         m_PostInfinity: 2
         m_RotationOrder: 4
     vectorLabel1_3: W
---- !u!1 &1911206372 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 1345105557649435795, guid: 2d8ed90570f5b254f9d667ebe553f6ba, type: 3}
-  m_PrefabInstance: {fileID: 908766970}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1919033340
 GameObject:
   m_ObjectHideFlags: 0
@@ -424558,11 +424372,6 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2121314451}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
---- !u!1 &2132646240 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 1345105557649435795, guid: 2d8ed90570f5b254f9d667ebe553f6ba, type: 3}
-  m_PrefabInstance: {fileID: 960579930}
-  m_PrefabAsset: {fileID: 0}
 --- !u!4 &2139430166 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 410180, guid: b8606597093e47dbb476bdb09448f37f, type: 3}

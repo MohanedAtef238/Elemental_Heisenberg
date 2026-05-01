@@ -1,5 +1,4 @@
 using System.Collections.Generic;
-using System.Linq;
 using UnityEngine;
 
 namespace Interactions
@@ -12,252 +11,195 @@ namespace Interactions
         public GameObject resultVialPrefab;
         public GameObject reactionPrefab;
         public Material prepSkybox;
+        public Color screenTint = Color.white;
         public AudioClip audioFeedback;
+
+        [Header("Result Identity")]
+        [Tooltip("The definition to apply to the spawned vial (sets its name and VFX).")]
+        public ItemDefinition resultDefinition;
+
+        [Tooltip("Optional override for the tooltip text. If empty, uses the Result Definition's name.")]
+        public string resultTooltip;
+
+        [Tooltip("Optional override for the vial's VFX. If empty, uses the Result Definition's effect.")]
+        public GameObject resultEffectOverride;
+
+        [Tooltip("Multiplies the intensity of the result vial's effect (default 1.0). Use to dim or boost brightness.")]
+        public float resultIntensity = 1.0f;
 
         public bool Matches(IReadOnlyList<ItemDefinition> presentVials)
         {
-            if (reactingVials == null || reactingVials.Count == 0)
-                return false;
-
-            if (presentVials == null || reactingVials.Count != presentVials.Count)
-                return false;
+            if (reactingVials == null || reactingVials.Count == 0) return false;
+            if (presentVials == null || reactingVials.Count != presentVials.Count) return false;
 
             var remaining = new List<ItemDefinition>(reactingVials);
             foreach (var vial in presentVials)
             {
-                if (vial == null)
-                    return false;
-
-                if (!remaining.Remove(vial))
-                    return false;
+                if (vial == null) return false;
+                if (!remaining.Remove(vial)) return false;
             }
-
             return remaining.Count == 0;
         }
     }
 
+    /// <summary>
+    /// Tracks ingredient vials placed inside the trigger zone and spawns reaction results.
+    /// Does NOT own recipe data — InteractionCoordinator is the single source of truth.
+    /// Fires OnIngredientsChanged whenever the zone contents change so the coordinator
+    /// can re-evaluate recipe matches.
+    /// </summary>
     public class AlchemyZone : MonoBehaviour
     {
         [SerializeField] private List<GameObject> _vialsInZone = new List<GameObject>();
-        [SerializeField] private List<AlchemyReactionRecipe> _reactionRecipes = new List<AlchemyReactionRecipe>();
         [SerializeField] private List<GameObject> _textPrefabs = new List<GameObject>();
         [SerializeField] private float _reactionCooldown = 1.0f;
 
-        private Material _defaultSkybox;
-        private Material _activePrepSkybox;
         private float _lastExecutionTime;
-        private AlchemyReactionRecipe _currentRecipe;
         private AudioSource _audioSource;
-        public bool IsPrepped { get; private set; }
-        public IReadOnlyList<AlchemyReactionRecipe> ReactionRecipes => _reactionRecipes;
+
+        /// <summary>Fires whenever vials enter or leave the zone.</summary>
+        public event System.Action OnIngredientsChanged;
+
+        /// <summary>Set externally by InteractionCoordinator when a recipe match is found.</summary>
+        public bool IsPrepped { get; set; }
 
         private void Awake()
         {
             _audioSource = GetComponent<AudioSource>();
             if (_audioSource == null)
-            {
                 _audioSource = gameObject.AddComponent<AudioSource>();
-            }
-        }
-
-        private void Start()
-        {
-            _defaultSkybox = RenderSettings.skybox;
         }
 
         private void OnTriggerEnter(Collider other)
         {
-            if (other.CompareTag("Vial"))
+            if (other.CompareTag("Vial") && !_vialsInZone.Contains(other.gameObject))
             {
-                if (!_vialsInZone.Contains(other.gameObject))
-                {
-                    _vialsInZone.Add(other.gameObject);
-                    EvaluateCurrentIngredients();
-                }
+                _vialsInZone.Add(other.gameObject);
+                OnIngredientsChanged?.Invoke();
             }
         }
 
         private void OnTriggerExit(Collider other)
         {
-            if (other.CompareTag("Vial"))
+            if (other.CompareTag("Vial") && _vialsInZone.Contains(other.gameObject))
             {
-                if (_vialsInZone.Contains(other.gameObject))
-                {
-                    _vialsInZone.Remove(other.gameObject);
-                    EvaluateCurrentIngredients();
-                }
+                _vialsInZone.Remove(other.gameObject);
+                OnIngredientsChanged?.Invoke();
             }
         }
 
-        public void EvaluateCurrentIngredients()
+        /// <summary>Returns the ItemDefinitions of all vials currently in the zone.</summary>
+        public List<ItemDefinition> GetPresentVialDefinitions()
         {
-            _currentRecipe = FindMatchingRecipe();
-            if (_currentRecipe != null)
+            var definitions = new List<ItemDefinition>();
+            foreach (var vial in _vialsInZone)
             {
-                SetPrepped(true, _currentRecipe.prepSkybox);
+                if (vial == null) continue;
+                var instance = vial.GetComponent<ItemInstance>()
+                            ?? vial.GetComponentInParent<ItemInstance>();
+                if (instance?.Definition != null)
+                    definitions.Add(instance.Definition);
             }
-            else
-            {
-                SetPrepped(false);
-            }
+            return definitions;
         }
 
-        private void SetPrepped(bool prepped, Material prepSkybox = null, bool restoreDefaultSkybox = true)
+        /// <summary>
+        /// Destroys ingredient vials and spawns the result vial + VFX.
+        /// Audio and skybox are handled externally by InteractionCoordinator.
+        /// </summary>
+        public void ExecuteSpawn(AlchemyReactionRecipe recipe)
         {
-            if (IsPrepped == prepped && _activePrepSkybox == prepSkybox) return;
-            
-            IsPrepped = prepped;
-            _activePrepSkybox = prepSkybox;
-            if (IsPrepped)
+            if (recipe == null)
             {
-                if (prepSkybox != null)
-                {
-                    RenderSettings.skybox = prepSkybox;
-                    DynamicGI.UpdateEnvironment();
-                }
-                else
-                {
-                    RenderSettings.skybox = _defaultSkybox;
-                    DynamicGI.UpdateEnvironment();
-                }
-            }
-            else
-            {
-                if (restoreDefaultSkybox)
-                {
-                    RenderSettings.skybox = _defaultSkybox;
-                    DynamicGI.UpdateEnvironment();
-                }
-            }
-        }
-
-        public void ExecuteReaction(bool force = false)
-        {
-            if (Time.time - _lastExecutionTime < _reactionCooldown) return;
-            
-            Debug.Log($"AlchemyZone: ExecuteReaction called (force: {force}, IsPrepped: {IsPrepped}, Vials: {_vialsInZone.Count})");
-            if (!IsPrepped && !force) 
-            {
-                Debug.LogWarning("AlchemyZone: Reaction aborted - Not prepped and not forced.");
+                Debug.LogWarning("AlchemyZone: ExecuteSpawn called with null recipe.");
                 return;
             }
 
-            AlchemyReactionRecipe recipeToExecute = _currentRecipe ?? FindMatchingRecipe();
-            if (recipeToExecute == null)
+            if (Time.time - _lastExecutionTime < _reactionCooldown)
             {
-                Debug.LogWarning("AlchemyZone: Reaction aborted - No matching recipe for the current vials.");
+                Debug.Log("AlchemyZone: ExecuteSpawn on cooldown.");
                 return;
             }
 
             _lastExecutionTime = Time.time;
+            IsPrepped = false;
 
-            // Use MeshRenderer bounds to find the true center of the paper
             MeshRenderer renderer = GetComponent<MeshRenderer>();
             Vector3 spawnPos = renderer != null ? renderer.bounds.center : transform.position;
-            Debug.Log($"AlchemyZone: Spawning reaction at {spawnPos} (Renderer center: {renderer != null})");
+            Debug.Log($"AlchemyZone: Spawning at {spawnPos} for recipe '{recipe.label}'.");
 
-            // Copy list to avoid modification during destruction, though we clear it anyway
-            List<GameObject> toDestroy = new List<GameObject>(_vialsInZone);
+            // Destroy ingredient vials
+            var toDestroy = new List<GameObject>(_vialsInZone);
             _vialsInZone.Clear();
-
             foreach (var vial in toDestroy)
             {
-                if (vial != null) 
+                if (vial != null)
                 {
                     Debug.Log($"AlchemyZone: Destroying ingredient {vial.name}");
                     Destroy(vial);
                 }
             }
 
-            Material reactionSkybox = recipeToExecute.prepSkybox;
-            SetPrepped(false, restoreDefaultSkybox: false);
-            _currentRecipe = null;
-
-            if (reactionSkybox != null)
+            // Spawn result vial
+            if (recipe.resultVialPrefab != null)
             {
-                RenderSettings.skybox = reactionSkybox;
-                DynamicGI.UpdateEnvironment();
-            }
+                GameObject resultVial = Instantiate(
+                    recipe.resultVialPrefab,
+                    spawnPos + Vector3.up * 0.15f,
+                    Quaternion.identity);
+                
+                // Apply the definition and optional VFX override + intensity
+                var instance = resultVial.GetComponent<ItemInstance>() ?? resultVial.GetComponentInParent<ItemInstance>();
+                if (instance != null && recipe.resultDefinition != null)
+                {
+                    instance.SetDefinition(recipe.resultDefinition, recipe.resultEffectOverride, recipe.resultIntensity);
+                }
 
-            if (recipeToExecute.resultVialPrefab != null)
-            {
-                // Spawn slightly higher to avoid clipping with the paper's collider
-                GameObject resultVial = Instantiate(recipeToExecute.resultVialPrefab, spawnPos + Vector3.up * 0.15f, Quaternion.identity);
-                if (resultVial != null)
+                // Update Tooltip text from the coordinator data
+                var tooltip = resultVial.GetComponent<TooltipOnHover>() ?? resultVial.GetComponentInParent<TooltipOnHover>();
+                if (tooltip != null)
                 {
-                    Debug.Log($"AlchemyZone: Successfully instantiated result vial: {resultVial.name}");
+                    string finalLabel = !string.IsNullOrEmpty(recipe.resultTooltip) 
+                        ? recipe.resultTooltip 
+                        : (recipe.resultDefinition != null ? recipe.resultDefinition.DisplayName : "");
+                    
+                    if (!string.IsNullOrEmpty(finalLabel))
+                        tooltip.SetTooltipText(finalLabel);
                 }
-                else
-                {
-                    Debug.LogError("AlchemyZone: Failed to instantiate result vial prefab!");
-                }
+
+                Debug.Log($"AlchemyZone: Spawned result vial '{resultVial.name}' with definition '{recipe.resultDefinition?.DisplayName ?? "None"}' and tooltip '{recipe.resultTooltip}'.");
             }
             else
             {
-                Debug.LogWarning($"AlchemyZone: Recipe '{recipeToExecute.label}' has no result vial prefab assigned.");
+                Debug.LogWarning($"AlchemyZone: Recipe '{recipe.label}' has no result vial prefab.");
             }
 
-            if (recipeToExecute.reactionPrefab != null)
+            // Spawn reaction VFX
+            if (recipe.reactionPrefab != null)
             {
-                GameObject effect = Instantiate(recipeToExecute.reactionPrefab, spawnPos, Quaternion.identity);
-                Debug.Log($"AlchemyZone: Instantiated reaction effect {effect.name}");
-                Destroy(effect, 3f); // Reduced to 3s to avoid lingering "endless" feel
+                GameObject effect = Instantiate(recipe.reactionPrefab, spawnPos, Quaternion.identity);
+                Destroy(effect, 3f);
             }
 
-            if (recipeToExecute.audioFeedback != null && _audioSource != null)
-            {
-                _audioSource.PlayOneShot(recipeToExecute.audioFeedback);
-            }
-
+            // Spawn floating text
             if (_textPrefabs.Count > 0)
             {
                 for (int i = 0; i < 3; i++)
                 {
                     GameObject randomText = _textPrefabs[Random.Range(0, _textPrefabs.Count)];
-                    Vector3 offset = new Vector3(Random.Range(-0.2f, 0.2f), Random.Range(0.2f, 0.4f), Random.Range(-0.2f, 0.2f));
-                    Quaternion rot = Quaternion.Euler(0, Random.Range(0, 360), 0);
-                    GameObject textObj = Instantiate(randomText, spawnPos + offset, rot);
-                    Destroy(textObj, 2f); // Cleanup text after 2 seconds
-                }
-            }
-            
-            Debug.Log("Alchemy reaction execution complete!");
-        }
-
-        private AlchemyReactionRecipe FindMatchingRecipe()
-        {
-            if (_reactionRecipes == null || _reactionRecipes.Count == 0)
-                return null;
-
-            List<ItemDefinition> presentDefinitions = GetPresentVialDefinitions();
-            if (presentDefinitions.Count == 0)
-                return null;
-
-            return _reactionRecipes.FirstOrDefault(recipe => recipe != null && recipe.Matches(presentDefinitions));
-        }
-
-        private List<ItemDefinition> GetPresentVialDefinitions()
-        {
-            List<ItemDefinition> definitions = new List<ItemDefinition>();
-
-            foreach (GameObject vial in _vialsInZone)
-            {
-                if (vial == null)
-                    continue;
-
-                ItemInstance instance = vial.GetComponent<ItemInstance>();
-                if (instance == null)
-                {
-                    instance = vial.GetComponentInParent<ItemInstance>();
-                }
-
-                if (instance?.Definition != null)
-                {
-                    definitions.Add(instance.Definition);
+                    Vector3 offset = new Vector3(
+                        Random.Range(-0.2f, 0.2f),
+                        Random.Range(0.2f, 0.4f),
+                        Random.Range(-0.2f, 0.2f));
+                    GameObject textObj = Instantiate(
+                        randomText,
+                        spawnPos + offset,
+                        Quaternion.Euler(0, Random.Range(0, 360), 0));
+                    Destroy(textObj, 2f);
                 }
             }
 
-            return definitions;
+            Debug.Log("AlchemyZone: ExecuteSpawn complete.");
         }
     }
 }

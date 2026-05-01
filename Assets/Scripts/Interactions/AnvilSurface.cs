@@ -3,23 +3,31 @@ using UnityEngine.InputSystem;
 
 namespace Interactions
 {
+    /// <summary>
+    /// Pure input receiver for hammer strikes on the anvil surface.
+    /// Detects valid impacts via HammerVelocityTracker and delegates
+    /// all reaction logic to InteractionCoordinator.
+    /// </summary>
     public class AnvilSurface : MonoBehaviour
     {
-        [SerializeField] private AlchemyZone _alchemyZone;
+        [SerializeField] private InteractionCoordinator _coordinator;
+
         [Tooltip("Optional debug action that force-triggers alchemy without an anvil hit.")]
         [SerializeField] private InputActionReference debugTriggerAction;
+
         [SerializeField] private float requiredImpactForce = 3f;
         [SerializeField] private float strikeRepeatCooldown = 0.2f;
+
         private InputAction _resolvedDebugAction;
         private float _lastStrikeTime;
 
         [ContextMenu("Force Trigger Reaction")]
         public void ForceTrigger()
         {
-            if (_alchemyZone != null)
+            if (_coordinator != null)
             {
                 Debug.Log("AnvilSurface: ContextMenu Force Trigger fired!");
-                _alchemyZone.ExecuteReaction(true);
+                _coordinator.ForceTriggerReaction();
             }
         }
 
@@ -30,9 +38,7 @@ namespace Interactions
                 _resolvedDebugAction = debugTriggerAction.action;
                 _resolvedDebugAction.performed += OnDebugTrigger;
                 if (!_resolvedDebugAction.enabled)
-                {
                     _resolvedDebugAction.Enable();
-                }
             }
         }
 
@@ -47,20 +53,20 @@ namespace Interactions
 
         private void OnDebugTrigger(InputAction.CallbackContext ctx)
         {
-            if (_alchemyZone != null)
+            if (_coordinator != null)
             {
                 Debug.Log("AnvilSurface: Debug controller trigger fired!");
-                _alchemyZone.ExecuteReaction(true);
+                _coordinator.ForceTriggerReaction();
             }
         }
 
         private void Update()
         {
-            // Fallback for editor testing if the controller action isn't working
+            // Editor fallback: press O to force-trigger
             if (Keyboard.current != null && Keyboard.current.oKey.wasPressedThisFrame)
             {
                 Debug.Log("AnvilSurface: Keyboard 'O' pressed - Forcing reaction!");
-                if (_alchemyZone != null) _alchemyZone.ExecuteReaction(true);
+                if (_coordinator != null) _coordinator.ForceTriggerReaction();
             }
         }
 
@@ -76,9 +82,9 @@ namespace Interactions
 
         private void TryProcessStrike(Collider other, string phase)
         {
-            if (_alchemyZone == null)
+            if (_coordinator == null)
             {
-                Debug.LogWarning("AnvilSurface: AlchemyZone is not assigned!");
+                Debug.LogWarning("AnvilSurface: InteractionCoordinator is not assigned!");
                 return;
             }
 
@@ -110,15 +116,8 @@ namespace Interactions
             }
 
             _lastStrikeTime = Time.time;
-            if (_alchemyZone.IsPrepped)
-            {
-                Debug.Log($"AnvilSurface: Valid strike from {strikeObject.name} on {phase} at speed {impactForce:F2}.");
-                _alchemyZone.ExecuteReaction();
-            }
-            else
-            {
-                Debug.Log($"AnvilSurface: Valid strike from {strikeObject.name}, but no valid alchemy recipe is currently prepped.");
-            }
+            Debug.Log($"AnvilSurface: Valid strike from {strikeObject.name} on {phase} at speed {impactForce:F2}. Notifying coordinator.");
+            _coordinator.TryExecuteReaction();
         }
     }
 }

@@ -1,62 +1,49 @@
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 namespace Interactions
 {
-    [System.Serializable]
-    public class InteractionResult
-    {
-        [Header("Skybox")]
-        public bool changeSky;
-        public Material skyboxMaterial;
-
-        [Header("Screen Tint")]
-        public bool applyScreenTint;
-        public Color screenTintColor = Color.white;
-
-        [Header("Sound")]
-        public AudioClip soundEffect;
-
-        [Header("Weather Effect")]
-        [Tooltip("Optional prefab spawned at the collision midpoint")]
-        public GameObject weatherEffectPrefab;
-
-        [Header("Output Vial")]
-        [Tooltip("If set, spawns a new vial with this definition")]
-        public ItemDefinition outputVialDefinition;
-        public GameObject baseVialPrefab;
-    }
-
-    [System.Serializable]
-    public class Interaction
-    {
-        public string label;
-        public ItemDefinition itemA;
-        public ItemDefinition itemB;
-        public InteractionResult result;
-
-        public bool Matches(ItemDefinition a, ItemDefinition b)
-        {
-            return (itemA == a && itemB == b) || (itemA == b && itemB == a);
-        }
-    }
-
     /// <summary>
-    /// Central interaction controller.
-    /// Attach to a single manager object and configure interactions in the Inspector.
-    /// Auto-discovers all ItemInstance objects in the scene at Start.
+    /// Single source of truth for all alchemical interactions.
     ///
-    /// To add a new interaction:
-    ///   1. Create ItemDefinition assets for each element
-    ///   2. Add an Interaction entry pairing the two items
-    ///   3. Configure the result (skybox, tint, sound, weather)
+    /// Configure ALL recipes and sub-system references here in the Inspector.
+    /// This coordinator owns the recipe list, evaluates ingredient matches,
+    /// and delegates every effect to the correct sub-system.
+    ///
+    /// Flow:
+    ///   1. AlchemyZone fires OnIngredientsChanged when vials enter/leave
+    ///   2. Coordinator matches present vials against its _recipes list
+    ///   3. Match found  → sets prep skybox via AtmosphereController, marks zone as prepped
+    ///      Match lost   → resets skybox, marks zone as not prepped
+    ///   4. AnvilSurface calls TryExecuteReaction() on a valid hammer strike
+    ///   5. Coordinator applies screen tint + audio, then tells AlchemyZone to spawn
+    ///
+    /// Sub-systems:
+    ///   - AlchemyZone          : ingredient tracking, vial destruction, result spawning
+    ///   - AtmosphereController : skybox (prep signal + reset)
+    ///   - ScreenTintController : URP post-processing tint (on execution)
     /// </summary>
     public class InteractionCoordinator : MonoBehaviour
     {
-        [SerializeField] private List<Interaction> _interactions = new();
-        [SerializeField] private ScreenTintEffect _screenTint;
+        [Header("Sub-Systems")]
+        [Tooltip("Tracks ingredient vials and spawns results on command.")]
+        [SerializeField] private AlchemyZone _alchemyZone;
 
-        private readonly List<ItemInstance> _items = new();
+        [Tooltip("Controls the global skybox material.")]
+        [SerializeField] private AtmosphereController _atmosphereController;
+
+        [Tooltip("Controls the URP post-processing screen tint.")]
+        [SerializeField] private ScreenTintController _screenTintController;
+
+        [Header("Recipes — Single Source of Truth")]
+        [Tooltip("All alchemical recipes. Add every combination here.")]
+        [SerializeField] private List<AlchemyReactionRecipe> _recipes = new();
+
+        /// <summary>Read-only access for UI boards and other display scripts.</summary>
+        public IReadOnlyList<AlchemyReactionRecipe> Recipes => _recipes;
+
+        private AlchemyReactionRecipe _currentRecipe;
         private AudioSource _audioSource;
 
         private void Awake()
@@ -68,73 +55,108 @@ namespace Interactions
 
         private void Start()
         {
-            foreach (var item in FindObjectsByType<ItemInstance>(FindObjectsSortMode.None))
-            {
-                _items.Add(item);
-                // item.OnCollidedWith += HandleCollision;
-            }
+            if (_alchemyZone != null)
+                _alchemyZone.OnIngredientsChanged += EvaluateIngredients;
+            else
+                Debug.LogError("InteractionCoordinator: AlchemyZone is not assigned!");
         }
 
         private void OnDestroy()
         {
-            foreach (var item in _items)
+            if (_alchemyZone != null)
+                _alchemyZone.OnIngredientsChanged -= EvaluateIngredients;
+        }
+
+        /// <summary>
+        /// Called whenever vials enter or leave the AlchemyZone.
+        /// Re-evaluates the recipe match and updates prep state + skybox.
+        /// </summary>
+        private void EvaluateIngredients()
+        {
+            var present = _alchemyZone.GetPresentVialDefinitions();
+            _currentRecipe = _recipes.FirstOrDefault(r => r != null && r.Matches(present));
+
+            bool prepped = _currentRecipe != null;
+            _alchemyZone.IsPrepped = prepped;
+
+            if (prepped)
             {
-                // if (item != null)
-                //     item.OnCollidedWith -= HandleCollision;
+                Debug.Log($"InteractionCoordinator: Recipe '{_currentRecipe.label}' matched — zone prepped.");
+                _atmosphereController?.SetSkybox(_currentRecipe.prepSkybox);
+            }
+            else
+            {
+                Debug.Log("InteractionCoordinator: No matching recipe — zone cleared.");
+                _atmosphereController?.ResetSkybox();
+                _screenTintController?.ClearTint();
             }
         }
 
-        private void HandleCollision(ItemInstance a, ItemInstance b)
+        /// <summary>
+        /// Called by AnvilSurface when a valid hammer strike is detected.
+        /// </summary>
+        public void TryExecuteReaction()
         {
-            if (!a.gameObject.activeSelf || !b.gameObject.activeSelf)
-                return;
-
-            foreach (var interaction in _interactions)
+            if (_alchemyZone == null)
             {
-                if (!interaction.Matches(a.Definition, b.Definition))
-                    continue;
-
-                a.gameObject.SetActive(false);
-                b.gameObject.SetActive(false);
-                ApplyResult(interaction.result, a.gameObject, b.gameObject);
+                Debug.LogError("InteractionCoordinator: AlchemyZone not assigned!");
                 return;
             }
+
+            if (!_alchemyZone.IsPrepped || _currentRecipe == null)
+            {
+                Debug.Log("InteractionCoordinator: TryExecuteReaction — zone not prepped or no recipe.");
+                return;
+            }
+
+            ExecuteRecipe(_currentRecipe);
         }
 
-        private void ApplyResult(InteractionResult result, GameObject objA, GameObject objB)
+        /// <summary>
+        /// Force-executes regardless of prep state. Used by debug shortcuts and ContextMenu.
+        /// </summary>
+        [ContextMenu("Force Trigger Reaction")]
+        public void ForceTriggerReaction()
         {
-            if (result.changeSky && result.skyboxMaterial != null)
+            if (_alchemyZone == null)
             {
-                RenderSettings.skybox = new Material(result.skyboxMaterial);
-                DynamicGI.UpdateEnvironment();
+                Debug.LogError("InteractionCoordinator: AlchemyZone not assigned!");
+                return;
             }
 
-            if (result.applyScreenTint && _screenTint != null)
+            Debug.Log("InteractionCoordinator: Force trigger fired.");
+
+            // Attempt a fresh match if nothing is currently set
+            if (_currentRecipe == null)
             {
-                _screenTint.SetTint(result.screenTintColor);
+                var present = _alchemyZone.GetPresentVialDefinitions();
+                _currentRecipe = _recipes.FirstOrDefault(r => r != null && r.Matches(present));
             }
 
-            if (result.soundEffect != null)
-            {
-                _audioSource.PlayOneShot(result.soundEffect);
-            }
+            if (_currentRecipe != null)
+                ExecuteRecipe(_currentRecipe);
+            else
+                Debug.LogWarning("InteractionCoordinator: Force trigger — no matching recipe found.");
+        }
 
-            if (result.weatherEffectPrefab != null)
-            {
-                var midpoint = (objA.transform.position + objB.transform.position) * 0.5f;
-                Instantiate(result.weatherEffectPrefab, midpoint, Quaternion.identity);
-            }
+        private void ExecuteRecipe(AlchemyReactionRecipe recipe)
+        {
+            Debug.Log($"InteractionCoordinator: Executing recipe '{recipe.label}'.");
 
-            if (result.outputVialDefinition != null && result.baseVialPrefab != null)
-            {
-                var midpoint = (objA.transform.position + objB.transform.position) * 0.5f;
-                GameObject newVial = Instantiate(result.baseVialPrefab, midpoint + Vector3.up * 0.2f, Quaternion.identity);
-                var instance = newVial.GetComponent<ItemInstance>();
-                if (instance != null)
-                {
-                    instance.SetDefinition(result.outputVialDefinition);
-                }
-            }
+            // Screen tint
+            _screenTintController?.SetTint(recipe.screenTint);
+
+            // Audio
+            if (recipe.audioFeedback != null && _audioSource != null)
+                _audioSource.PlayOneShot(recipe.audioFeedback);
+
+            // Cache the recipe reference and clear coordinator state before spawn
+            // (AlchemyZone.ExecuteSpawn will clear IsPrepped internally)
+            var recipeToRun = recipe;
+            _currentRecipe = null;
+
+            // Delegate spawning and VFX to AlchemyZone
+            _alchemyZone.ExecuteSpawn(recipeToRun);
         }
     }
 }

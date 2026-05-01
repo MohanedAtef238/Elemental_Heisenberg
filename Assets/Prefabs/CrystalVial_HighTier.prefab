@@ -15,9 +15,9 @@ GameObject:
   - component: {fileID: 7367596900936843736}
   - component: {fileID: 7142858261536454878}
   - component: {fileID: 7255185673845871950}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: CrystalVial_HighTier
-  m_TagString: Untagged
+  m_TagString: Vial
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -62,8 +62,8 @@ Rigidbody:
   m_ImplicitTensor: 1
   m_UseGravity: 1
   m_IsKinematic: 0
-  m_Interpolate: 0
-  m_Constraints: 0
+  m_Interpolate: 1
+  m_Constraints: 112
   m_CollisionDetection: 0
 --- !u!114 &2863187150191091672
 MonoBehaviour:
@@ -225,7 +225,9 @@ MonoBehaviour:
   maxParticles: 8
   effectTag: vial_effects
   vfxScale: 0.02
-  intensityMultiplier: 2
+  baseIntensityMultiplier: 2
+  shapeScaleMultiplier: 3
+  vfxOffset: {x: 0, y: 0.05, z: 0}
 --- !u!114 &7142858261536454878
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -239,7 +241,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Interactions.TooltipOnHover
   tooltipPrefab: {fileID: 100000, guid: d8f39a6e8b3fa5949a0054e16642e04b, type: 3}
-  offset: {x: 0, y: 0.8, z: 0}
+  offset: {x: 0, y: 0.45, z: 0}
   fadeDuration: 0.15
   tooltipText: 
 --- !u!65 &7255185673845871950
@@ -274,6 +276,18 @@ PrefabInstance:
     - target: {fileID: 100000, guid: 3674654d4c61d4c43b23da21e14be368, type: 3}
       propertyPath: m_Name
       value: Model
+      objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: 3674654d4c61d4c43b23da21e14be368, type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 100002, guid: 3674654d4c61d4c43b23da21e14be368, type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 100004, guid: 3674654d4c61d4c43b23da21e14be368, type: 3}
+      propertyPath: m_Layer
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 3674654d4c61d4c43b23da21e14be368, type: 3}
       propertyPath: m_LocalPosition.x
@@ -314,6 +328,26 @@ PrefabInstance:
     - target: {fileID: 400000, guid: 3674654d4c61d4c43b23da21e14be368, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2300000, guid: 3674654d4c61d4c43b23da21e14be368, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: f0ab82507be71fe49a7aba872af50258, type: 2}
+    - target: {fileID: 2300002, guid: 3674654d4c61d4c43b23da21e14be368, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 4f89f76424cf4b742a47152b5aec29a1, type: 2}
+    - target: {fileID: 2300004, guid: 3674654d4c61d4c43b23da21e14be368, type: 3}
+      propertyPath: m_RayTracingMode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2300004, guid: 3674654d4c61d4c43b23da21e14be368, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: d187a30aca9306e4cbbf61ecc5c3a8ac, type: 2}
+    - target: {fileID: 9500000, guid: 3674654d4c61d4c43b23da21e14be368, type: 3}
+      propertyPath: m_Controller
+      value: 
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

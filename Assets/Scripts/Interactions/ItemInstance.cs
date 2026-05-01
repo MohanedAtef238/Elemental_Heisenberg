@@ -15,10 +15,30 @@ namespace Interactions
 
         public ItemDefinition Definition => _definition;
 
-        public void SetDefinition(ItemDefinition definition)
+        private void Awake()
+        {
+            // Force Instantaneous movement so objects stay locked to the hand during WASD movement
+            var grab = GetComponent<UnityEngine.XR.Interaction.Toolkit.Interactables.XRGrabInteractable>();
+            if (grab != null)
+            {
+                grab.movementType = UnityEngine.XR.Interaction.Toolkit.Interactables.XRBaseInteractable.MovementType.Instantaneous;
+            }
+        }
+
+        public void SetDefinition(ItemDefinition definition, GameObject vfxOverride = null, float intensityMultiplier = 1.0f)
         {
             _definition = definition;
-            // Optionally refresh visuals if needed
+            
+            // Refresh visuals via the VFX container if present
+            var container = GetComponent<VialVFXContainer>();
+            if (container != null && _definition != null)
+            {
+                // Use the override if provided, otherwise fallback to the definition's effect
+                GameObject effectToUse = vfxOverride != null ? vfxOverride : _definition.EffectPrefab;
+                
+                if (effectToUse != null)
+                    container.InjectEffect(effectToUse, intensityMultiplier);
+            }
         }
 
         public event System.Action<ItemInstance, ItemInstance> OnCollidedWith;

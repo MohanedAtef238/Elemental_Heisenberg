@@ -13,10 +13,10 @@ namespace Interactions
     {
         [Tooltip("The UI prefab to use for the tooltip. Should contain a TextMeshProUGUI component.")]
         public GameObject tooltipPrefab;
-        public Vector3 offset = new Vector3(0, 0.2f, 0);
+        public Vector3 offset = new Vector3(0, 0.12f, 0);
         public float fadeDuration = 0.15f;
         
-        [Tooltip("Text to display on the tooltip. If empty, it will try to use the ItemInstance DisplayName instead.")]
+        [Tooltip("Text to override the display name. LEAVE EMPTY to use the ItemDefinition's name automatically.")]
         public string tooltipText = "";
 
         private UnityEngine.XR.Interaction.Toolkit.Interactables.XRBaseInteractable _interactable;
@@ -113,6 +113,15 @@ namespace Interactions
             Vector3 dir = _tooltipInstance.transform.position - _camera.transform.position;
             if (dir.sqrMagnitude > 0.0001f)
                 _tooltipInstance.transform.rotation = Quaternion.LookRotation(dir);
+        }
+
+        public void SetTooltipText(string text)
+        {
+            tooltipText = text;
+            if (_tooltipInstance != null && _textMeshPro != null)
+            {
+                _textMeshPro.text = text;
+            }
         }
 
         private IEnumerator FadeTo(float targetAlpha, bool deactivateOnEnd = false)

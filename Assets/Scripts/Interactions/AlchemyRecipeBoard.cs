@@ -14,6 +14,10 @@ namespace Interactions
         [SerializeField] private VisualTreeAsset _documentAsset;
         [SerializeField] private string _title = "Known Recipes";
 
+        [Header("Data Source")]
+        [Tooltip("The InteractionCoordinator that owns the recipe list.")]
+        [SerializeField] private InteractionCoordinator _coordinator;
+
         [Header("Placement")]
         [SerializeField] private Vector3 _boardOffset = new Vector3(0.9f, 0.75f, 0f);
         [SerializeField] private Vector3 _boardRotationEuler = new Vector3(12f, -90f, 0f);
@@ -31,6 +35,11 @@ namespace Interactions
 
         private void Start()
         {
+            if (_coordinator == null)
+            {
+                Debug.LogWarning("AlchemyRecipeBoard: InteractionCoordinator is not assigned — board will be empty.");
+            }
+
             if (_panelSettings == null || _documentAsset == null)
             {
                 Debug.LogWarning("AlchemyRecipeBoard: PanelSettings or document asset is missing.");
@@ -113,7 +122,7 @@ namespace Interactions
 
             contentContainer.Clear();
 
-            foreach (AlchemyReactionRecipe recipe in _alchemyZone.ReactionRecipes)
+            foreach (AlchemyReactionRecipe recipe in (_coordinator != null ? _coordinator.Recipes : System.Array.Empty<AlchemyReactionRecipe>()))
             {
                 if (recipe == null)
                     continue;

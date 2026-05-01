@@ -65,7 +65,7 @@ Rigidbody:
   m_IsKinematic: 0
   m_Interpolate: 1
   m_Constraints: 112
-  m_CollisionDetection: 2
+  m_CollisionDetection: 0
 --- !u!114 &3250441868932122740
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -225,6 +225,10 @@ MonoBehaviour:
   simulationSpeed: 0.5
   maxParticles: 8
   effectTag: vial_effects
+  vfxScale: 0.05
+  baseIntensityMultiplier: 2
+  shapeScaleMultiplier: 1.5
+  vfxOffset: {x: 0, y: 0.05, z: 0}
 --- !u!114 &2617289636747754986
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -260,8 +264,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 0.24, y: 0.18, z: 0.3}
-  m_Center: {x: 0, y: 0.07, z: 0}
+  m_Size: {x: 0.24, y: 0.14358693, z: 0.1745601}
+  m_Center: {x: 0, y: 0.07856254, z: -0.002779197}
 --- !u!1 &5602638646694752053
 GameObject:
   m_ObjectHideFlags: 0
@@ -385,6 +389,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 23104682081304620, guid: a628f6f95bf927d449632f563706db95, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: ce4b77858ec6c0f469b07b034c21a85f, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
