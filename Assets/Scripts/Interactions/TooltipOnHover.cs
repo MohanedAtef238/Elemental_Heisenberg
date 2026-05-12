@@ -22,6 +22,7 @@ namespace Interactions
         private UnityEngine.XR.Interaction.Toolkit.Interactables.XRBaseInteractable _interactable;
         private Camera _camera;
         private ItemInstance _itemInstance;
+        private VialVFXContainer _vfxContainer;
         private GameObject _tooltipInstance;
         private TextMeshProUGUI _textMeshPro;
         private CanvasGroup _canvasGroup;
@@ -32,6 +33,7 @@ namespace Interactions
             _interactable = GetComponent<UnityEngine.XR.Interaction.Toolkit.Interactables.XRBaseInteractable>();
             _camera = Camera.main;
             _itemInstance = GetComponent<ItemInstance>();
+            _vfxContainer = GetComponent<VialVFXContainer>();
 
             if (_tooltipInstance == null && tooltipPrefab != null)
             {
@@ -94,6 +96,8 @@ namespace Interactions
             if (!_tooltipInstance.activeSelf) _tooltipInstance.SetActive(true);
             if (_fadeCoroutine != null) StopCoroutine(_fadeCoroutine);
             _fadeCoroutine = StartCoroutine(FadeTo(1f));
+
+            if (_vfxContainer != null) _vfxContainer.SetEffectVisibility(true);
         }
 
         private void HideTooltip()
@@ -102,6 +106,8 @@ namespace Interactions
             if (_tooltipInstance == null) return;
             if (_fadeCoroutine != null) StopCoroutine(_fadeCoroutine);
             _fadeCoroutine = StartCoroutine(FadeTo(0f, deactivateOnEnd: true));
+
+            if (_vfxContainer != null) _vfxContainer.SetEffectVisibility(false);
         }
 
         private void PositionTooltip()

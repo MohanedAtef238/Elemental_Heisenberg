@@ -44,22 +44,10 @@ namespace Interactions
             var container = vialCollider.GetComponentInParent<VialVFXContainer>();
             if (container == null) return;
 
+            // Use the centralized visibility method for particle systems
+            container.SetEffectVisibility(play);
+
             Transform vialTransform = container.transform;
-
-            ParticleSystem[] systems = vialTransform.GetComponentsInChildren<ParticleSystem>(true);
-            foreach (var ps in systems)
-            {
-                if (play)
-                {
-                    ps.Play();
-                }
-                else
-                {
-                    // Stop emitting and immediately clear existing particles.
-                    ps.Stop(true, ParticleSystemStopBehavior.StopEmittingAndClear);
-                }
-            }
-
             AudioSource[] sources = vialTransform.GetComponentsInChildren<AudioSource>(true);
             foreach (var source in sources)
             {

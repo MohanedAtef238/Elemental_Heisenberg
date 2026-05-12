@@ -41,7 +41,6 @@ namespace Interactions
             }
         }
 
-        public event System.Action<ItemInstance, ItemInstance> OnCollidedWith;
 
         // private void OnCollisionEnter(Collision collision)
         // {

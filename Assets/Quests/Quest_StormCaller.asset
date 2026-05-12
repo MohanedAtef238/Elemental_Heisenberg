@@ -1,0 +1,21 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ef706e995f5bcc64e94dcc9f7041ab93, type: 3}
+  m_Name: Quest_StormCaller
+  m_EditorClassIdentifier: Assembly-CSharp::Interactions.QuestDefinition
+  questTitle: The Storm Caller
+  questDescription: Legends speak of a cloud that burns and zaps at the same time.
+    Can you recreate this atmospheric anomaly?
+  hint: Steam is hot, but it lacks that spark. Lightning in a bottle? No, lightning
+    in the mist.
+  targetItem: {fileID: 11400000, guid: 4daeb56cc9808f14ba4da58bc8cdd32e, type: 2}
+  completionWeatherPrefab: {fileID: 160098, guid: 984874e3dc8a6c14f89ebd9aabbd3583, type: 3}

@@ -9,6 +9,7 @@ namespace Interactions
     public class AtmosphereController : MonoBehaviour
     {
         private Material _defaultSkybox;
+        private GameObject _activeWeatherInstance;
 
         private void Awake()
         {
@@ -26,12 +27,36 @@ namespace Interactions
         }
 
         /// <summary>
-        /// Restores the original skybox captured on Awake.
+        /// Spawns a global weather prefab.
+        /// </summary>
+        public void SetWeather(GameObject weatherPrefab)
+        {
+            ClearWeather();
+            if (weatherPrefab == null) return;
+            
+            _activeWeatherInstance = Instantiate(weatherPrefab);
+        }
+
+        /// <summary>
+        /// Destroys the active weather effect.
+        /// </summary>
+        public void ClearWeather()
+        {
+            if (_activeWeatherInstance != null)
+            {
+                Destroy(_activeWeatherInstance);
+                _activeWeatherInstance = null;
+            }
+        }
+
+        /// <summary>
+        /// Restores the original skybox captured on Awake and clears weather.
         /// </summary>
         public void ResetSkybox()
         {
             RenderSettings.skybox = _defaultSkybox;
             DynamicGI.UpdateEnvironment();
+            ClearWeather();
         }
     }
 }

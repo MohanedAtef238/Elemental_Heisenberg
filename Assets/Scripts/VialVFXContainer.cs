@@ -4,15 +4,12 @@ using System.Collections.Generic;
 public class VialVFXContainer : MonoBehaviour
 {
     [SerializeField] private Transform effectAnchor;
-    [SerializeField] private float activationDistance = 2.5f;
-    [SerializeField] private float simulationSpeed = 0.5f;
-    [SerializeField] private int maxParticles = 8;
-    [SerializeField] private string effectTag = "vial_effects";
 
     [Header("Scaling & Positioning")]
-    [SerializeField] private float vfxScale = 0.04f; // Slightly smaller default
-    [SerializeField] private float baseIntensityMultiplier = 1.2f; // Lowered from 2.0
-    [SerializeField] private float shapeScaleMultiplier = 1.2f; // Lowered from 1.5
+    [SerializeField] private float vfxScale = 0.35f; // Increased from 0.12f to engulf the vial
+    [SerializeField] private float baseIntensityMultiplier = 5.0f; // Increased from 3.5f
+    [SerializeField] private float shapeScaleMultiplier = 4.0f; // Increased from 1.8f to spread outside the glass
+    [SerializeField] private float particleSizeMultiplier = 2.0f; // New: make individual particles larger
     [SerializeField] private Vector3 vfxOffset = new Vector3(0, 0.05f, 0); // Position inside the vial
 
     private List<ParticleSystem> targetSystems = new List<ParticleSystem>();
@@ -23,6 +20,29 @@ public class VialVFXContainer : MonoBehaviour
         if (effectAnchor != null)
         {
             RefreshSystems();
+            // Start with effects hidden/stopped
+            SetEffectVisibility(false);
+        }
+    }
+
+    /// <summary>
+    /// Centralized control for vial VFX visibility.
+    /// </summary>
+    public void SetEffectVisibility(bool visible)
+    {
+        if (targetSystems.Count == 0 && effectAnchor != null)
+            RefreshSystems();
+
+        foreach (var ps in targetSystems)
+        {
+            if (visible)
+            {
+                if (!ps.isPlaying) ps.Play();
+            }
+            else
+            {
+                ps.Stop(true, ParticleSystemStopBehavior.StopEmittingAndClear);
+            }
         }
     }
 
@@ -45,6 +65,7 @@ public class VialVFXContainer : MonoBehaviour
         {
             var main = ps.main;
             main.scalingMode = ParticleSystemScalingMode.Hierarchy;
+            main.startSizeMultiplier *= particleSizeMultiplier;
             
             // Increase the "Area" of the effect by scaling the shape module
             var shape = ps.shape;
@@ -80,7 +101,6 @@ public class VialVFXContainer : MonoBehaviour
         
         foreach (var ps in allSystems)
         {
-            // Note: We no longer gate by tag here to allow the Pad to find all systems
             targetSystems.Add(ps);
         }
     }

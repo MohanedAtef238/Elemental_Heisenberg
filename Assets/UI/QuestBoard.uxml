@@ -1,0 +1,12 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" xsi="http://www.w3.org/2001/XMLSchema-instance" engine="UnityEngine.UIElements" editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+    <ui:Style src="project://database/Assets/UI/QuestBoard.uss" />
+    <ui:VisualElement style="flex-grow: 1; align-items: center; justify-content: center; width: 100%; height: 100%;">
+        <ui:VisualElement class="quest-container">
+            <ui:Label name="quest-title" text="" class="quest-title" />
+            <ui:Label name="quest-desc" text="" class="quest-desc" />
+            <ui:VisualElement class="quest-divider" />
+            <ui:Label name="quest-target" text="" class="quest-target" />
+            <ui:Label name="quest-hint" text="" class="quest-hint" />
+        </ui:VisualElement>
+    </ui:VisualElement>
+</ui:UXML>

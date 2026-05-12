@@ -12,6 +12,14 @@ namespace Interactions
     {
         [SerializeField] private InteractionCoordinator _coordinator;
 
+        private void Awake()
+        {
+            if (_coordinator == null)
+            {
+                _coordinator = Object.FindAnyObjectByType<InteractionCoordinator>();
+            }
+        }
+
         [Tooltip("Optional debug action that force-triggers alchemy without an anvil hit.")]
         [SerializeField] private InputActionReference debugTriggerAction;
 

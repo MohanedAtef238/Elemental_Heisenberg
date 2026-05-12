@@ -27,6 +27,9 @@ namespace Interactions
         [Tooltip("Multiplies the intensity of the result vial's effect (default 1.0). Use to dim or boost brightness.")]
         public float resultIntensity = 1.0f;
 
+        [Tooltip("If true, this recipe will not be displayed on the public AlchemyRecipeBoard.")]
+        public bool isSecret = false;
+
         public bool Matches(IReadOnlyList<ItemDefinition> presentVials)
         {
             if (reactingVials == null || reactingVials.Count == 0) return false;

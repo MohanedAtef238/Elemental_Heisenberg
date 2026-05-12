@@ -225,9 +225,9 @@ MonoBehaviour:
   simulationSpeed: 0.5
   maxParticles: 8
   effectTag: vial_effects
-  vfxScale: 0.05
-  baseIntensityMultiplier: 2
-  shapeScaleMultiplier: 1.5
+  vfxScale: 0.04
+  baseIntensityMultiplier: 1.2
+  shapeScaleMultiplier: 1.2
   vfxOffset: {x: 0, y: 0.05, z: 0}
 --- !u!114 &2617289636747754986
 MonoBehaviour:

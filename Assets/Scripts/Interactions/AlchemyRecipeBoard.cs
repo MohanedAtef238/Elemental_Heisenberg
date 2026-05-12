@@ -6,7 +6,6 @@ using UnityEngine.UIElements;
 
 namespace Interactions
 {
-    [RequireComponent(typeof(AlchemyZone))]
     public class AlchemyRecipeBoard : MonoBehaviour
     {
         [Header("Document")]
@@ -30,7 +29,7 @@ namespace Interactions
 
         private void Awake()
         {
-            _alchemyZone = GetComponent<AlchemyZone>();
+            // Optional alchemy zone link if needed in the future, but no longer required
         }
 
         private void Start()
@@ -38,6 +37,11 @@ namespace Interactions
             if (_coordinator == null)
             {
                 Debug.LogWarning("AlchemyRecipeBoard: InteractionCoordinator is not assigned — board will be empty.");
+            }
+
+            if (QuestManager.Instance != null)
+            {
+                QuestManager.Instance.OnRecipesUpdated += PopulateBoard;
             }
 
             if (_panelSettings == null || _documentAsset == null)
@@ -52,6 +56,11 @@ namespace Interactions
 
         private void OnDisable()
         {
+            if (QuestManager.Instance != null)
+            {
+                QuestManager.Instance.OnRecipesUpdated -= PopulateBoard;
+            }
+
             if (_boardObject != null)
             {
                 Destroy(_boardObject);
@@ -62,10 +71,17 @@ namespace Interactions
 
         private void CreateBoard()
         {
+            if (TryGetComponent<UIDocument>(out _boardDocument))
+            {
+                // We are attached directly to the board object
+                _boardObject = gameObject;
+                return;
+            }
+
             if (_boardObject != null)
                 return;
 
-            _boardObject = new GameObject("AlchemyRecipeBoard");
+            _boardObject = new GameObject("AlchemyRecipeBoard_Dynamic");
             _boardObject.transform.SetPositionAndRotation(
                 transform.position + (transform.rotation * _boardOffset),
                 transform.rotation * Quaternion.Euler(_boardRotationEuler));
@@ -127,6 +143,12 @@ namespace Interactions
                 if (recipe == null)
                     continue;
 
+                // Secret recipes only show up once discovered
+                bool isDiscovered = QuestManager.Instance != null && QuestManager.Instance.IsRecipeDiscovered(recipe.resultDefinition?.name ?? recipe.label);
+                
+                if (recipe.isSecret && !isDiscovered)
+                    continue;
+
                 VisualElement row = new VisualElement();
                 row.AddToClassList("recipe-row");
 
@@ -160,7 +182,10 @@ namespace Interactions
             }
 
             builder.Append(" -> ");
-            builder.Append(GetResultName(recipe.resultVialPrefab));
+            if (recipe.resultDefinition != null)
+                builder.Append(GetDefinitionName(recipe.resultDefinition));
+            else
+                builder.Append(GetResultName(recipe.resultVialPrefab));
             return builder.ToString();
         }
 

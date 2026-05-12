@@ -157,6 +157,23 @@ namespace Interactions
 
             // Delegate spawning and VFX to AlchemyZone
             _alchemyZone.ExecuteSpawn(recipeToRun);
+
+            // Notify Quest System
+            if (QuestManager.Instance != null)
+            {
+                ItemDefinition def = recipeToRun.resultDefinition;
+                if (def == null && recipeToRun.resultVialPrefab != null)
+                {
+                    var instance = recipeToRun.resultVialPrefab.GetComponent<ItemInstance>();
+                    if (instance == null) instance = recipeToRun.resultVialPrefab.GetComponentInParent<ItemInstance>();
+                    def = instance?.Definition;
+                }
+
+                if (def != null)
+                {
+                    QuestManager.Instance.CheckCompletion(def);
+                }
+            }
         }
     }
 }
