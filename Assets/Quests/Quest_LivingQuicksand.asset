@@ -1,0 +1,20 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ef706e995f5bcc64e94dcc9f7041ab93, type: 3}
+  m_Name: Quest_LivingQuicksand
+  m_EditorClassIdentifier: Assembly-CSharp::Interactions.QuestDefinition
+  questTitle: The Devouring Earth
+  questDescription: The earth hungers. When dark entropic decay corrupts petrifying
+    mud, the ground itself will swallow you whole. Try it, if you dare.
+  hint: Combine the mud of earth and water with the decay of darkness.
+  targetItem: {fileID: 11400000, guid: 8482e9ea950a6e149ab4c003f6bfa9e5, type: 2}
+  completionWeatherPrefab: {fileID: 1344314377593938, guid: aa8611c4f392cbc47a5a46f7ca450ae2, type: 3}

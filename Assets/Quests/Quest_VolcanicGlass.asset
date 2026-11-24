@@ -1,0 +1,20 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ef706e995f5bcc64e94dcc9f7041ab93, type: 3}
+  m_Name: Quest_VolcanicGlass
+  m_EditorClassIdentifier: Assembly-CSharp::Interactions.QuestDefinition
+  questTitle: The Obsidian Shower
+  questDescription: Molten slag meets the bitter cold, forming sharp shards of glass
+    falling from the sky. Can you forge this destructive force?
+  hint: Fire and earth create the slag, but ice brings the shatter.
+  targetItem: {fileID: 11400000, guid: 8d7a7ca21ece2b24696ea4b14486aa4b, type: 2}
+  completionWeatherPrefab: {fileID: 122790, guid: a6ec8e865aa9df042a300d89587f62da, type: 3}

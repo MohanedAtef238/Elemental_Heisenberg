@@ -5,6 +5,10 @@ TagManager:
   serializedVersion: 3
   tags:
   - vial_effects
+  - FxTemporaire
+  - Vial
+  - Vial_PureEssence
+  - Weapon
   layers:
   - Default
   - TransparentFX
@@ -14,9 +18,9 @@ TagManager:
   - UI
   - 
   - 
-  - 
-  - 
-  - 
+  - Interactable
+  - Player
+  - Weapon
   - 
   - 
   - 

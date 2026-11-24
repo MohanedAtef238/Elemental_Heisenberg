@@ -10,13 +10,14 @@ GameObject:
   m_Component:
   - component: {fileID: 4815938364229597180}
   - component: {fileID: 6938337117361158646}
-  - component: {fileID: 266007949118005263}
   - component: {fileID: 3250441868932122740}
   - component: {fileID: 801028453173019094}
   - component: {fileID: 2607423752859926735}
-  m_Layer: 0
+  - component: {fileID: 2617289636747754986}
+  - component: {fileID: 2036260645340553652}
+  m_Layer: 8
   m_Name: Base_WeatherVial
-  m_TagString: Untagged
+  m_TagString: Vial
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -62,30 +63,9 @@ Rigidbody:
   m_ImplicitTensor: 1
   m_UseGravity: 1
   m_IsKinematic: 0
-  m_Interpolate: 0
-  m_Constraints: 0
+  m_Interpolate: 1
+  m_Constraints: 112
   m_CollisionDetection: 0
---- !u!135 &266007949118005263
-SphereCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1345105557649435795}
-  m_Material: {fileID: 13400000, guid: b51c3fdcdf39411469f1110aed83ec5c, type: 2}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Radius: 0.05
-  m_Center: {x: 0, y: 0.05, z: 0}
 --- !u!114 &3250441868932122740
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -167,26 +147,26 @@ MonoBehaviour:
   m_MatchAttachRotation: 1
   m_SnapToColliderVolume: 1
   m_ReinitializeDynamicAttachEverySingleGrab: 1
-  m_AttachEaseInTime: 0.15
-  m_MovementType: 2
+  m_AttachEaseInTime: 0
+  m_MovementType: 1
   m_PredictedVisualsTransform: {fileID: 0}
   m_VelocityDamping: 1
   m_VelocityScale: 1
   m_AngularVelocityDamping: 1
-  m_AngularVelocityScale: 1
+  m_AngularVelocityScale: 0
   m_TrackPosition: 1
-  m_SmoothPosition: 0
-  m_SmoothPositionAmount: 8
+  m_SmoothPosition: 1
+  m_SmoothPositionAmount: 25
   m_TightenPosition: 0.1
-  m_TrackRotation: 1
-  m_SmoothRotation: 0
-  m_SmoothRotationAmount: 8
+  m_TrackRotation: 0
+  m_SmoothRotation: 1
+  m_SmoothRotationAmount: 25
   m_TightenRotation: 0.1
   m_TrackScale: 1
   m_SmoothScale: 0
   m_SmoothScaleAmount: 8
   m_TightenScale: 0.1
-  m_ThrowOnDetach: 1
+  m_ThrowOnDetach: 0
   m_ThrowSmoothingDuration: 0.25
   m_ThrowSmoothingCurve:
     serializedVersion: 2
@@ -203,8 +183,8 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
-  m_ThrowVelocityScale: 1.5
-  m_ThrowAngularVelocityScale: 1
+  m_ThrowVelocityScale: 0
+  m_ThrowAngularVelocityScale: 0
   m_ForceGravityOnDetach: 0
   m_RetainTransformParent: 1
   m_StartingSingleGrabTransformers: []
@@ -241,6 +221,51 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::VialVFXContainer
   effectAnchor: {fileID: 3320474205337817584}
+  activationDistance: 2.5
+  simulationSpeed: 0.5
+  maxParticles: 8
+  effectTag: vial_effects
+  vfxScale: 0.04
+  baseIntensityMultiplier: 1.2
+  shapeScaleMultiplier: 1.2
+  vfxOffset: {x: 0, y: 0.05, z: 0}
+--- !u!114 &2617289636747754986
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1345105557649435795}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 554d6fd0da15b13499ad9347a122c9fc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Interactions.TooltipOnHover
+  tooltipPrefab: {fileID: 100000, guid: d8f39a6e8b3fa5949a0054e16642e04b, type: 3}
+  offset: {x: 0, y: 0.2, z: 0}
+  fadeDuration: 0.15
+  tooltipText: Weather Vial
+--- !u!65 &2036260645340553652
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1345105557649435795}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 0.24, y: 0.14358693, z: 0.1745601}
+  m_Center: {x: 0, y: 0.07856254, z: -0.002779197}
 --- !u!1 &5602638646694752053
 GameObject:
   m_ObjectHideFlags: 0
@@ -250,7 +275,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1881702407643904618}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Visual_Mesh
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -282,7 +307,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3320474205337817584}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: VFX_Anchor
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -315,6 +340,14 @@ PrefabInstance:
     - target: {fileID: 1257193002279952, guid: a628f6f95bf927d449632f563706db95, type: 3}
       propertyPath: m_Name
       value: Flask_Model
+      objectReference: {fileID: 0}
+    - target: {fileID: 1257193002279952, guid: a628f6f95bf927d449632f563706db95, type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 1995273381122676, guid: a628f6f95bf927d449632f563706db95, type: 3}
+      propertyPath: m_Layer
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 4791130065246042, guid: a628f6f95bf927d449632f563706db95, type: 3}
       propertyPath: m_LocalPosition.x
@@ -356,6 +389,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 23104682081304620, guid: a628f6f95bf927d449632f563706db95, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: ce4b77858ec6c0f469b07b034c21a85f, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

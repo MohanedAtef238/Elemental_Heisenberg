@@ -1,0 +1,73 @@
+.quest-container {
+    background-color: rgba(30, 20, 10, 0.95);
+    border-color: #D4AF37;
+    border-width: 4px;
+    border-radius: 20px;
+    padding: 40px;
+    width: 900px;
+    height: 650px;
+    align-items: center;
+    color: #F5DEB3;
+    transition-property: scale, border-color, background-color, translate, border-width;
+    transition-duration: 0.3s;
+    transition-timing-function: ease-out-back;
+}
+
+.quest-container:hover {
+    scale: 1.1;
+    translate: 0 -10px 0;
+    border-width: 8px;
+    border-color: #FFD700;
+    background-color: rgba(50, 40, 20, 0.95);
+}
+
+.quest-title {
+    font-size: 64px;
+    -unity-font-style: bold;
+    color: #FFD700;
+    margin-bottom: 25px;
+    transition-property: color, scale;
+    transition-duration: 0.2s;
+}
+
+.quest-container:hover .quest-title {
+    color: #FFFFFF;
+    scale: 1.1;
+    text-shadow: 0 0 15px rgba(255, 215, 0, 0.8);
+}
+
+.quest-desc {
+    font-size: 36px;
+    white-space: normal;
+    -unity-text-align: middle-center;
+    margin-bottom: 40px;
+}
+
+.quest-divider {
+    height: 3px;
+    background-color: #8B4513;
+    width: 90%;
+    margin-bottom: 40px;
+}
+
+.quest-target {
+    font-size: 42px;
+    -unity-font-style: bold;
+    color: #ADFF2F;
+    margin-bottom: 25px;
+    transition-property: color, scale;
+    transition-duration: 0.3s;
+}
+
+.quest-container:hover .quest-target {
+    color: #00FF00;
+    scale: 1.2;
+}
+
+.quest-hint {
+    font-size: 32px;
+    -unity-font-style: italic;
+    color: #DEB887;
+    white-space: normal;
+    -unity-text-align: middle-center;
+}
